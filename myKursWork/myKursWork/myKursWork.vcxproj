@@ -78,6 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="derivative.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="parser.cpp" />
   </ItemGroup>
