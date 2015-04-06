@@ -78,9 +78,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="derivative.cpp" />
+    <ClCompile Include="MatchParse1r.cpp" />
+    <ClCompile Include="MatchParser.cpp" />
     <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="parser.cpp" />
+    <ClCompile Include="ParserResult.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">

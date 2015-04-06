@@ -13,22 +13,25 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Файлы исходного кода\Syntax parser">
-      <UniqueIdentifier>{b86270a4-918a-4fc9-8e4f-120419e56921}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Файлы исходного кода\Math functions">
       <UniqueIdentifier>{861b443d-09ca-4a6a-82b1-5671de5b0d8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Parser">
+      <UniqueIdentifier>{e4ec589f-08b3-49f3-9396-50a0db7f461a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="parser.cpp">
-      <Filter>Файлы исходного кода\Syntax parser</Filter>
+    <ClCompile Include="ParserResult.cpp">
+      <Filter>Файлы исходного кода\Parser</Filter>
     </ClCompile>
-    <ClCompile Include="derivative.cpp">
-      <Filter>Файлы исходного кода\Math functions</Filter>
+    <ClCompile Include="MatchParse1r.cpp">
+      <Filter>Файлы исходного кода\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="MatchParser.cpp">
+      <Filter>Файлы исходного кода\Parser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
