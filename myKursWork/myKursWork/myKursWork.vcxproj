@@ -78,7 +78,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MatchParse1r.cpp" />
     <ClCompile Include="MatchParser.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="ParserResult.cpp" />

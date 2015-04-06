@@ -27,9 +27,6 @@
     <ClCompile Include="ParserResult.cpp">
       <Filter>Файлы исходного кода\Parser</Filter>
     </ClCompile>
-    <ClCompile Include="MatchParse1r.cpp">
-      <Filter>Файлы исходного кода\Parser</Filter>
-    </ClCompile>
     <ClCompile Include="MatchParser.cpp">
       <Filter>Файлы исходного кода\Parser</Filter>
     </ClCompile>
