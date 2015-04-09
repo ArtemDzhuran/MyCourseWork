@@ -1,4 +1,5 @@
 #pragma once
+#include "MatchParser.cpp"
 
 namespace MyCourseWork {
 
@@ -100,9 +101,12 @@ namespace MyCourseWork {
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-				 button1->Text = "zaazazaz";
-				 label1->Visible = true;
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
+	{
+				 MatchParser matchParser;
+				 
+				 double tmp = matchParser.Parse("8+10");
+
 	}
 	};
 }

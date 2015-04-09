@@ -10,18 +10,15 @@
 using namespace std;
 
 
-double toRadians(double angle)
-{
-	return angle * 3.14 / 180.0;
-}
+
 
 struct ooops : exception 
 {
 	const char* what() const _NOEXCEPT{ return "Ooops!\n"; }
 	const char* yhuyu() const _NOEXCEPT{ return "9iuy!\n"; }
 
-	const char* notValidNum() const _NOEXCEPT{ "not valid number '"; }
-	const char* canNotGetValidNum() const _NOEXCEPT{ "can't get valid number"; }
+	const char* notValidNum() const _NOEXCEPT{ return "not valid number '"; }
+	const char* canNotGetValidNum() const _NOEXCEPT{ return "can't get valid number"; }
 
 
 };
@@ -30,6 +27,11 @@ public class MatchParser
 {
 private:
 	ooops e;
+
+double toRadians(double angle)
+{
+	return angle * 3.14 / 180.0;
+}
 
 private: map<string, double> variables;
 
@@ -80,7 +82,7 @@ private: Result PlusMinus(string s)
 				 if (!(current.rest[0] == '+' || current.rest[0] == '-')) break;
 
 				 char sign = current.rest[0];
-				 string next = current.rest.substr(0, 1);
+				 string next = current.rest.substr(1, s.length());
 
 				 current = MulDiv(next);
 				 if (sign == '+')
@@ -97,12 +99,13 @@ private: Result PlusMinus(string s)
 private: Result Bracket(string s)
 {
 			 char zeroChar = s[0];
+			 
 			 if (zeroChar == '(')
 			 {
-				 Result r = PlusMinus(s.substr(0, 1));
+				 Result r = PlusMinus(s.substr(1, s.length()));
 				 if (r.rest != "" && r.rest[0] == ')')
 				 {
-					 r.rest = r.rest.substr(0, 1);
+					 r.rest = r.rest.substr(1, s.length());
 				 }
 				 else
 				 {
@@ -120,7 +123,7 @@ private: Result FunctionVariable(string s)
 			 int i = 0;
 			 // ищем название функции или переменной
 			 // имя обязательно должна начинаться с буквы
-			 while ((unsigned)i <= s.length() && (isalpha(s[i]) || (isdigit(s[i]) && i > 0))) {
+			 while ((unsigned)i <= s.length() && (isalpha(s[i]) /*|| (isdigit(s[i]) && i >= 0)*/)) {
 				 f += s[i];
 				 i++;
 			 }
@@ -130,7 +133,7 @@ private: Result FunctionVariable(string s)
 					 return processFunction(f, r);
 				 }
 				 else { // иначе - это переменная
-					 return  Result(getVariable(f), s.substr(0, f.length()));
+					 return  Result(getVariable(f), s.substr(f.length()));//erase=substr
 				 }
 			 }
 			 return Num(s);
@@ -150,7 +153,7 @@ private: Result MulDiv(string s)
 				 char sign = current.rest[0];
 				 if ((sign != '*' && sign != '/')) return current;
 
-				 string next = current.rest.substr(0, 1);
+				 string next = current.rest.substr(1, s.length());
 				 Result right = Bracket(next);
 
 				 if (sign == '*')
@@ -174,7 +177,7 @@ private: Result Num(string s)
 			 // число также может начинаться с минуса
 			 if (s[0] == '-'){
 				 negative = true;
-				 s = s.substr(0, 1);
+				 s = s.substr(1, s.length());
 			 }
 			 // разрешаем только цифры и точку
 			 while ((unsigned)i < s.length() && (isdigit(s[i]) || s[i] == '.'))
@@ -193,8 +196,10 @@ private: Result Num(string s)
 			 }
 
 			 double dPart = atof(s.substr(0, i).c_str());
+			 
+			 //double dPart = atof(s.erase(0,i).c_str());
 			 if (negative) dPart = -dPart;
-			 string restPart = s.substr(0, i);
+			 string restPart = s.substr(i, s.length());
 
 			 return  Result(dPart, restPart);
 }
