@@ -108,7 +108,8 @@ namespace MyCourseWork {
 	{
 				 MatchParser matchParser;
 				 
-				 double tmp = matchParser.Parse("8+10");
+				 double tmp = matchParser.Parse("sqrt(10+6)");
+
 		
 	}
 	};

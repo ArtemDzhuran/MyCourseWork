@@ -129,7 +129,7 @@ private: Result FunctionVariable(string s)
 			 }
 			 if (f != "") { // если что-нибудь нашли
 				 if (s.length() >= (unsigned)i && s[i] == '(') { // и следующий символ скобка значит - это функция
-					 Result r = Bracket(s.substr(0, f.length()));
+					 Result r = Bracket(s.substr(i,s.length()));//was f.length
 					 return processFunction(f, r);
 				 }
 				 else { // иначе - это переменная
@@ -196,7 +196,7 @@ private: Result Num(string s)
 			 }
 
 			 double dPart = atof(s.substr(0, i).c_str());
-			 
+			 			 
 			 //double dPart = atof(s.erase(0,i).c_str());
 			 if (negative) dPart = -dPart;
 			 string restPart = s.substr(i, s.length());
@@ -207,39 +207,47 @@ private: Result Num(string s)
 		 // Тут определяем все нашие функции, которыми мы можем пользоватся в формулах
 private: Result processFunction(string func, Result r)
 {
-			 if (func == "sin")
+			 try
 			 {
-				 return  Result(sin(toRadians(r.acc)), r.rest);
-			 }
-			 else if (func == "cos")
-			 {
-				 return  Result(cos(toRadians(r.acc)), r.rest);
-			 }
-			 else if (func == "tan")
-			 {
-				 return  Result(tan(toRadians(r.acc)), r.rest);
-			 }
-			 else if (func == "exp")
-			 {
-				 return  Result(exp(r.acc), r.rest);
-			 }
-			 else if (func == "ln")
-			 {
-				 return  Result(log(r.acc), r.rest);
-			 }
-			 else if (func == "sqrt")
-			 {
-				 return  Result(sqrt(r.acc), r.rest);
-			 }
+				 if (func == "sin")
+				 {
+					 return  Result(sin(toRadians(r.acc)), r.rest);
+				 }
+				 else if (func == "cos")
+				 {
+					 return  Result(cos(toRadians(r.acc)), r.rest);
+				 }
+				 else if (func == "tan")
+				 {
+					 return  Result(tan(toRadians(r.acc)), r.rest);
+				 }
+				 else if (func == "exp")
+				 {
+					 return  Result(exp(r.acc), r.rest);
+				 }
+				 else if (func == "ln")
+				 {
+					 
+					 return  Result(log(r.acc), r.rest);
+				 }
+				 else if (func == "sqrt")
+				 {
+					 return  Result(sqrt(r.acc), r.rest);
+				 }
 
-			/* else if (func == "^")
-			 {
+				 /* else if (func == "^")
+				 {
 				 string str =  Result(pow(r.acc,r.rest[0]), r.rest);
-			 }*/
-			 else
-			 {
-				 cout << "function '" + func + "' is not defined";
+				 }*/
+				 else
+				 {
+					 cout << "function '" + func + "' is not defined";
 
+				 }
+			 }
+			 catch (exception)
+			 {
+				 //тут исключение можно обработать
 			 }
 
 			 return r;
