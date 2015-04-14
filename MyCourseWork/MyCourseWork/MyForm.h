@@ -92,7 +92,7 @@ namespace MyCourseWork {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 262);
+			this->ClientSize = System::Drawing::Size(403, 283);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->button1);
@@ -107,8 +107,8 @@ namespace MyCourseWork {
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 	{
 				 MatchParser matchParser;
-				 
-				 double tmp = matchParser.Parse("sqrt(10+6)");
+				// matchParser.setVariable("x", 9.0);
+				 double tmp = matchParser.Parse("sqrt(49)");
 
 		
 	}

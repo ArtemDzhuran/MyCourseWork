@@ -47,8 +47,9 @@ public: void setVariable(string variableName, double variableValue)
 
 public: double getVariable(string variableName)
 {
-			std::map<string, double>::iterator it = variables.begin();
-			for (std::map<string, double>::iterator it = variables.begin(); it != variables.end(); ++it){
+			map<string, double>::iterator it;
+			
+		/*	for (std::map<string, double>::iterator it = variables.begin(); it != variables.end(); ++it){
 				if (it->first == variableName)
 				//if (variables.find(variableName) == variables.end && variables.end->first != variableName)
 				{
@@ -57,8 +58,10 @@ public: double getVariable(string variableName)
 					return 0.0;
 				}
 
-			}
-			return variables.at(variableName);
+			}*/
+			it = variables.find(variableName);
+			return (*it).second;
+			
 }
 
 public: double Parse(string s)
@@ -133,7 +136,7 @@ private: Result FunctionVariable(string s)
 					 return processFunction(f, r);
 				 }
 				 else { // иначе - это переменная
-					 return  Result(getVariable(f), s.substr(f.length()));//erase=substr
+					 return  Result(getVariable(f), s.substr(i, s.length()));//erase=substr;was f.length
 				 }
 			 }
 			 return Num(s);
