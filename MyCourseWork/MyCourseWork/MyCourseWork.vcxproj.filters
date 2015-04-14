@@ -16,6 +16,9 @@
     <Filter Include="Файлы исходного кода\FormuleParser">
       <UniqueIdentifier>{569b45c5-d7ad-4dd5-afd4-d98de13e7eec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы исходного кода\GoldenSection">
+      <UniqueIdentifier>{f7c48bf3-9b99-4a31-b904-523b6b38e34f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp">
@@ -24,8 +27,14 @@
     <ClCompile Include="ParserResult.cpp">
       <Filter>Файлы исходного кода\FormuleParser</Filter>
     </ClCompile>
-    <ClCompile Include="MatchParser.cpp">
+    <ClCompile Include="MathParser.cpp">
       <Filter>Файлы исходного кода\FormuleParser</Filter>
+    </ClCompile>
+    <ClCompile Include="GoldenSection.cpp">
+      <Filter>Файлы исходного кода\GoldenSection</Filter>
+    </ClCompile>
+    <ClCompile Include="GoldenResult.cpp">
+      <Filter>Файлы исходного кода\GoldenSection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

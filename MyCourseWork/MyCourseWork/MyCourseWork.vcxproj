@@ -79,7 +79,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MatchParser.cpp" />
+    <ClCompile Include="GoldenResult.cpp" />
+    <ClCompile Include="GoldenSection.cpp" />
+    <ClCompile Include="MathParser.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="ParserResult.cpp" />
   </ItemGroup>

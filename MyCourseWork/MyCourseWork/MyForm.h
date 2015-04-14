@@ -1,5 +1,19 @@
 #pragma once
-#include "MatchParser.cpp"
+
+#include "GoldenSection.cpp"
+#include <msclr\marshal_cppstd.h>
+
+using namespace std;
+using namespace System::Runtime::InteropServices;
+
+string toString(System::String^ value){
+	return msclr::interop::marshal_as<std::string>(value);
+}
+
+System::String^ toSysString(string _value){
+	return gcnew System::String(_value.c_str());
+}
+
 
 
 
@@ -106,9 +120,16 @@ namespace MyCourseWork {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 	{
-				 MatchParser matchParser;
-				// matchParser.setVariable("x", 9.0);
-				 double tmp = matchParser.Parse("sqrt(49)");
+
+				/* MathParser m;
+				 m.setVariable("x", 10.3);
+				 double res = m.Parse("x+0.35");*/
+
+				 GoldenSection g;
+				 g.setFunction("x+9");
+				 
+				 double a = g.findMin();
+				
 
 		
 	}
