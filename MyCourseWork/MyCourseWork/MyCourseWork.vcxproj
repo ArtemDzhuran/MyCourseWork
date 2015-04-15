@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6F3983FA-95E8-4516-8EC0-FF85D0DA8478}</ProjectGuid>
+    <ProjectGuid>{95ED3A16-3678-4B02-8F62-ABB7254BA376}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>MyCourseWork</RootNamespace>
@@ -55,10 +55,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
-      <SubSystem>Windows</SubSystem>
-      <EntryPointSymbol>Main</EntryPointSymbol>
+      <AdditionalDependencies />
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,18 +76,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MyConvert.cpp" />
-    <ClCompile Include="Exceptions.cpp" />
+    <ClCompile Include="Extreme.cpp" />
     <ClCompile Include="GoldenResult.cpp" />
     <ClCompile Include="GoldenSection.cpp" />
     <ClCompile Include="MathParser.cpp" />
+    <ClCompile Include="MyConvert.cpp" />
+    <ClCompile Include="MyExceptions.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="ParserResult.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Extreme.h" />
+    <ClInclude Include="GoldenResult.h" />
+    <ClInclude Include="GoldenSection.h" />
+    <ClInclude Include="MathParser.h" />
+    <ClInclude Include="MyConvert.h" />
+    <ClInclude Include="MyExceptions.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ParserResult.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">

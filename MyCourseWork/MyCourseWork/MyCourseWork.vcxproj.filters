@@ -13,37 +13,64 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Файлы исходного кода\FormuleParser">
-      <UniqueIdentifier>{569b45c5-d7ad-4dd5-afd4-d98de13e7eec}</UniqueIdentifier>
+    <Filter Include="Файлы исходного кода\MaxMin">
+      <UniqueIdentifier>{2164310a-bc5e-4dc5-ad29-32666bf7fcf6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы исходного кода\GoldenSection">
-      <UniqueIdentifier>{f7c48bf3-9b99-4a31-b904-523b6b38e34f}</UniqueIdentifier>
+    <Filter Include="Файлы исходного кода\MaxMin\Extreme">
+      <UniqueIdentifier>{cb747ad3-fc17-46aa-9c87-02733276b345}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы исходного кода\Exeptions">
-      <UniqueIdentifier>{b6182b86-5c3e-4e12-b48b-5cfd7454e84a}</UniqueIdentifier>
+    <Filter Include="Файлы исходного кода\MaxMin\GoldenSection">
+      <UniqueIdentifier>{84b1ebdb-06f2-4469-ae30-e256504faf68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\MathParser">
+      <UniqueIdentifier>{8afa3a69-7180-420a-b6ec-0c504226e2b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Exceptions">
+      <UniqueIdentifier>{f985f84d-ef9e-43ce-8106-379eba155dab}</UniqueIdentifier>
     </Filter>
     <Filter Include="Файлы исходного кода\Convert">
-      <UniqueIdentifier>{cc682567-9590-4fe7-aedc-fb4632e7cce8}</UniqueIdentifier>
+      <UniqueIdentifier>{2ad8e5ee-3bda-4a83-93e2-51c08121f7bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\MaxMin">
+      <UniqueIdentifier>{64b1b9b8-bdc8-46ba-bf11-b794ac18b763}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\MaxMin\Extreme">
+      <UniqueIdentifier>{bde06e81-d6af-44cf-9373-56afc187c0eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\MaxMin\GoldenSection">
+      <UniqueIdentifier>{75a5b7a2-b457-4e67-823b-0002558a604f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\MathParser">
+      <UniqueIdentifier>{50784948-54b0-46a6-bbb5-ddbd56a8d71a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Exceptions">
+      <UniqueIdentifier>{6eabfaf6-4ebc-48c9-97b9-d0cca1fc52fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Convert">
+      <UniqueIdentifier>{33fc17da-7609-4c14-86d8-ebc8d09898d8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="ParserResult.cpp">
-      <Filter>Файлы исходного кода\FormuleParser</Filter>
-    </ClCompile>
-    <ClCompile Include="MathParser.cpp">
-      <Filter>Файлы исходного кода\FormuleParser</Filter>
-    </ClCompile>
-    <ClCompile Include="GoldenSection.cpp">
-      <Filter>Файлы исходного кода\GoldenSection</Filter>
+    <ClCompile Include="Extreme.cpp">
+      <Filter>Файлы исходного кода\MaxMin\Extreme</Filter>
     </ClCompile>
     <ClCompile Include="GoldenResult.cpp">
-      <Filter>Файлы исходного кода\GoldenSection</Filter>
+      <Filter>Файлы исходного кода\MaxMin\GoldenSection</Filter>
     </ClCompile>
-    <ClCompile Include="Exceptions.cpp">
-      <Filter>Файлы исходного кода\Exeptions</Filter>
+    <ClCompile Include="GoldenSection.cpp">
+      <Filter>Файлы исходного кода\MaxMin\GoldenSection</Filter>
+    </ClCompile>
+    <ClCompile Include="MathParser.cpp">
+      <Filter>Файлы исходного кода\MathParser</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserResult.cpp">
+      <Filter>Файлы исходного кода\MathParser</Filter>
+    </ClCompile>
+    <ClCompile Include="MyExceptions.cpp">
+      <Filter>Файлы исходного кода\Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="MyConvert.cpp">
       <Filter>Файлы исходного кода\Convert</Filter>
@@ -53,10 +80,26 @@
     <ClInclude Include="MyForm.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="MyForm.resx">
-      <Filter>Файлы ресурсов</Filter>
-    </EmbeddedResource>
+    <ClInclude Include="Extreme.h">
+      <Filter>Заголовочные файлы\MaxMin\Extreme</Filter>
+    </ClInclude>
+    <ClInclude Include="GoldenResult.h">
+      <Filter>Заголовочные файлы\MaxMin\GoldenSection</Filter>
+    </ClInclude>
+    <ClInclude Include="GoldenSection.h">
+      <Filter>Заголовочные файлы\MaxMin\GoldenSection</Filter>
+    </ClInclude>
+    <ClInclude Include="MathParser.h">
+      <Filter>Заголовочные файлы\MathParser</Filter>
+    </ClInclude>
+    <ClInclude Include="ParserResult.h">
+      <Filter>Заголовочные файлы\MathParser</Filter>
+    </ClInclude>
+    <ClInclude Include="MyExceptions.h">
+      <Filter>Заголовочные файлы\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="MyConvert.h">
+      <Filter>Заголовочные файлы\Convert</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

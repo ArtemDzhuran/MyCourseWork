@@ -1,17 +1,13 @@
-#include <string>
+#include "ParserResult.h"
 
-using namespace std;
 
-class Result
+
+Result::Result(double v, string r)
 {
+	acc = v;
+	rest = r;
+}
 
-public:
-	double acc; //частина рядка, який вже обробили
-	string rest; //частина рядка, яка залишилась
-
-	Result(double v, string r)  //збереження нашого результату
-	{
-		acc = v;
-		rest = r;
-	}
-};
+Result::~Result()
+{
+}

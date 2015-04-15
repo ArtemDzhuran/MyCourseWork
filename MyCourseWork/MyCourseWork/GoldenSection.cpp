@@ -1,177 +1,166 @@
-#include <string>
-#include "GoldenResult.cpp"
-#include "MathParser.cpp"
+#include "GoldenSection.h"
 
 
-using namespace std;
-
-class GoldenSection
+GoldenSection::GoldenSection()
 {
-private:
-	string _function;
-	double _eps; //точність
-	double _leftBorder; 
-	double _rightBorder;
-	MathParser mathParser;
-	GoldenResult goldenResult;
-
-	const double t = (1 + sqrt(5)) / 2;//константа золотого січення
+	_function = "";
+	_eps = 0.0001;
+	_leftBorder = -1;
+	_rightBorder = 1;
+}
 
 
+GoldenSection::GoldenSection(string function)
+{
+	_function = function;
+}
 
-public:
-
-	GoldenSection()
+void GoldenSection::changeComasWithDots(string& str)
+{
+	for (int i = 0; i < str.length(); i++)
 	{
-		_function = "";
-		_eps = 0.0001;
-		_leftBorder = -1;
-		_rightBorder = 1;
-	}
-
-	GoldenSection(string function) 
-	{
-		_function = function;
-	}
-
-
-	bool isValidBrackets(string s)
-	{
-		int openBrackets = 0;
-		int closeBrackets = 0;
-		for (int i = 0; i < s.length(); i++)
+		if (str[i] == ',')
 		{
-			if (s[i] == '(')
-				openBrackets++;
-			if (s[i] = ')')
-				closeBrackets++;
+			str[i] = '.';
 		}
+	}
+}
 
-		if (openBrackets != closeBrackets)
-		{
-			return false;
-		}
-
-		return true;
+bool GoldenSection::isValidBrackets(string s)
+{
+	int openBrackets = 0;
+	int closeBrackets = 0;
+	for (unsigned int i = 0; i < s.length(); i++)
+	{
+		if (s[i] == '(')
+			openBrackets++;
+		if (s[i] == ')')
+			closeBrackets++;
 	}
 
-	void setEps(double eps)
+	if (openBrackets != closeBrackets)
 	{
-		_eps = eps;
+		return false;
 	}
 
-	void setLeftBorder(double leftBorder)
+	return true;
+}
+
+void GoldenSection::setEps(double eps)
+{
+	_eps = eps;
+}
+
+void GoldenSection::setLeftBorder(double leftBorder)
+{
+	_leftBorder = leftBorder;
+}
+
+void GoldenSection::setRightBorder(double rightBorder)
+{
+	_rightBorder = rightBorder;
+}
+
+double GoldenSection::getEps()
+{
+	return _eps;
+}
+
+double GoldenSection::getRightBorder()
+{
+	return _rightBorder;
+}
+
+double GoldenSection::getLeftBorder()
+{
+	return _leftBorder;
+}
+
+void GoldenSection::setFunction(string function)
+{
+	if (!isValidBrackets(function))
 	{
-		_leftBorder = leftBorder;
+		throw(e.notValidBrackets());
 	}
 
-	void setRightBorder(double rightBorder)
+	changeComasWithDots(function);
+
+	_function = function;
+}
+
+string GoldenSection::getFunction()
+{
+	return _function;
+}
+
+void GoldenSection::find(bool isLess)
+{
+	mathParser.setVariable("x", _leftBorder);
+	double tmp = mathParser.Parse(_function);
+	goldenResult.setMax(tmp);
+	tmp = mathParser.Parse(_function);
+	goldenResult.setMin(tmp);
+	goldenResult.setXMax(_leftBorder);
+	goldenResult.setXMin(_leftBorder);
+
+	do
 	{
-		_rightBorder = rightBorder;
-	}
-
-	double getEps()
-	{
-		return _eps;
-	}
-
-	double getRightBorder()
-	{
-		return _rightBorder;
-	}
-
-	double getLeftBorder()
-	{
-		return _leftBorder;
-	}
-
-	void setFunction(string function)
-	{
-		if (!isValidBrackets(function))
-		{
-			throw(&Exceptions::notValidBrackets);
-		}
-		_function = function;
-	}
-
-	string getFunction()
-	{
-		return _function;
-	}
-
-	double find(bool isLess)
-	{
-		mathParser.setVariable("x", _leftBorder);
-		double tmp = mathParser.Parse(_function);
-		goldenResult.setMax(tmp);
-		tmp = mathParser.Parse(_function);
-		goldenResult.setMin(tmp);
-		goldenResult.setXMax(_leftBorder);
-		goldenResult.setXMin(_leftBorder);
-
-		do
-		{
-			double x1 = _rightBorder - ((_rightBorder - _leftBorder) / t);
-			double x2 = _leftBorder + ((_rightBorder - _leftBorder) / t);
-			mathParser.setVariable("x", x1);
-			double y1 = mathParser.Parse(_function);
-			mathParser.setVariable("x", x2);
-			double y2 = mathParser.Parse(_function);
-
-
-			if (isLess){
-				if (y1 >= y2) //min
-				{
-					_leftBorder = x1;
-				}
-				else
-				{
-					_rightBorder = x2;
-				}
-			}
-			else
-			{
-				if (y1 <= y2) //max
-				{
-					_leftBorder = x1;
-				}
-				else
-				{
-					_rightBorder = x2;
-				}
-			}
-		} while (fabs(_leftBorder - _rightBorder) > _eps);
+		double x1 = _rightBorder - ((_rightBorder - _leftBorder) / t);
+		double x2 = _leftBorder + ((_rightBorder - _leftBorder) / t);
+		mathParser.setVariable("x", x1);
+		double y1 = mathParser.Parse(_function);
+		mathParser.setVariable("x", x2);
+		double y2 = mathParser.Parse(_function);
 
 
 		if (isLess){
-			goldenResult.setMin(mathParser.Parse(_function));
-			goldenResult.setXMin(_leftBorder);
-			return goldenResult.getMin();
+			if (y1 >= y2) //min
+			{
+				_leftBorder = x1;
+			}
+			else
+			{
+				_rightBorder = x2;
+			}
 		}
 		else
 		{
-			goldenResult.setMax(mathParser.Parse(_function));
-			goldenResult.setXMax(_leftBorder);
-			return goldenResult.getMin();
+			if (y1 <= y2) //max
+			{
+				_leftBorder = x1;
+			}
+			else
+			{
+				_rightBorder = x2;
+			}
 		}
-		
-		
-		return 0.0;
-		
-	}
+	} while (fabs(_leftBorder - _rightBorder) > _eps);
 
-	double findMax()
+
+	if (isLess){
+		goldenResult.setMin(mathParser.Parse(_function));
+		goldenResult.setXMin(_leftBorder);
+		//return goldenResult.getMin();
+	}
+	else
 	{
-		return find(false);
-	}
-
-	double findMin()
-	{
-		return find(true);
+		goldenResult.setMax(mathParser.Parse(_function));
+		goldenResult.setXMax(_leftBorder);
+		//return goldenResult.getMin();
 	}
 
 
-};
+	//return 0.0;
 
+}
 
+void GoldenSection::findMax()
+{
+	find(false);
+}
+
+void GoldenSection::findMin()
+{
+	find(true);
+}
 

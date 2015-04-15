@@ -1,0 +1,19 @@
+#include <string>
+
+using namespace std;
+
+class Result
+{
+
+public:
+	double acc; //частина рядка, який вже обробили
+	string rest; //частина рядка, яка залишилась
+
+
+	//збереження нашого результату
+	Result(double v, string r)  
+	{
+		acc = v;
+		rest = r;
+	}
+};

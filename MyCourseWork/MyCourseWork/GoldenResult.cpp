@@ -1,23 +1,18 @@
+#include "GoldenResult.h"
 
-class GoldenResult
+
+GoldenResult::GoldenResult()
 {
+	_min = 0;
+	_xMin = 0;
+	_max = 0;
+	_xMax = 0;
+}
 
-private:
-	double _xMin;
-	double _xMax;
-	double _min;
-	double _max;
-public:
 
-	GoldenResult()
-	{
-		_min = 0;
-		_xMin = 0;
-		_max = 0;
-		_xMax = 0;
-	}
 
-	GoldenResult(double min, double xMin, double max, double xMax)
+	//Конструктор з параметрами
+GoldenResult::GoldenResult(double min, double xMin, double max, double xMax)
 	{
 		_min = min;
 		_xMin = xMin;
@@ -25,44 +20,47 @@ public:
 		_xMax = xMax;
 	}
 
-	void setXMin(double xMin)
+	
+void GoldenResult::setXMin(double xMin)
 	{
 		_xMin = xMin;
 	}
 
-	double getXMin()
+double GoldenResult::getXMin()
 	{
 		return _xMin;
 	}
 
-	void setXMax(double xMax)
+void GoldenResult::setXMax(double xMax)
 	{
 		_xMax = xMax;
 	}
 
-	double getXMax()
+double GoldenResult::getXMax()
 	{
 		return _xMax;
 	}
 
-	void setMin(double min)
+void GoldenResult::setMin(double min)
 	{
 		_min = min;
 	}
 
-	double getMin()
+double GoldenResult::getMin()
 	{
 		return _min;
 	}
 
-	void setMax(double max)
+void GoldenResult::setMax(double max)
 	{
 		_max = max;
 	}
 
-	double getMax()
+double GoldenResult::getMax()
 	{
 		return _max;
 	}
 
-};
+GoldenResult::~GoldenResult()
+{
+}

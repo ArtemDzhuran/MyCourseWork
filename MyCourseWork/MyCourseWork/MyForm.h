@@ -1,17 +1,17 @@
 #pragma once
 
-#include "GoldenSection.cpp"
-#include "Exceptions.cpp"
-
+//#include "GoldenSection.cpp"
+//#include "MyExceptions.cpp"
+#include <math.h>
+//#include "Extreme.cpp"
 
 using namespace std;
 
-
-
-
-
-
 namespace MyCourseWork {
+
+
+	//MyExceptions excep;
+
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -33,6 +33,9 @@ namespace MyCourseWork {
 			//TODO: добавьте код конструктора
 			//
 		}
+
+
+
 
 	protected:
 		/// <summary>
@@ -68,6 +71,9 @@ namespace MyCourseWork {
 
 	private: System::Windows::Forms::Label^  lLeftBorder;
 	private: System::Windows::Forms::Label^  lRightBorder;
+	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::Button^  button3;
 
 
 
@@ -98,6 +104,9 @@ namespace MyCourseWork {
 			this->tRightBorder = (gcnew System::Windows::Forms::TextBox());
 			this->lLeftBorder = (gcnew System::Windows::Forms::Label());
 			this->lRightBorder = (gcnew System::Windows::Forms::Label());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// bResult
@@ -116,7 +125,7 @@ namespace MyCourseWork {
 			this->tFunction->Name = L"tFunction";
 			this->tFunction->Size = System::Drawing::Size(298, 22);
 			this->tFunction->TabIndex = 1;
-			this->tFunction->Text = L"x*x";
+			this->tFunction->Text = L"x*x+9";
 			// 
 			// lFunction
 			// 
@@ -133,7 +142,7 @@ namespace MyCourseWork {
 			this->tEps->Name = L"tEps";
 			this->tEps->Size = System::Drawing::Size(257, 22);
 			this->tEps->TabIndex = 4;
-			this->tEps->Text = L"0.01";
+			this->tEps->Text = L"0,01";
 			// 
 			// lEps
 			// 
@@ -158,7 +167,7 @@ namespace MyCourseWork {
 			this->tLeftBorder->Name = L"tLeftBorder";
 			this->tLeftBorder->Size = System::Drawing::Size(93, 22);
 			this->tLeftBorder->TabIndex = 7;
-			this->tLeftBorder->Text = L"-1";
+			this->tLeftBorder->Text = L"-10";
 			// 
 			// tRightBorder
 			// 
@@ -166,7 +175,7 @@ namespace MyCourseWork {
 			this->tRightBorder->Name = L"tRightBorder";
 			this->tRightBorder->Size = System::Drawing::Size(100, 22);
 			this->tRightBorder->TabIndex = 8;
-			this->tRightBorder->Text = L"1";
+			this->tRightBorder->Text = L"10";
 			// 
 			// lLeftBorder
 			// 
@@ -186,6 +195,33 @@ namespace MyCourseWork {
 			this->lRightBorder->TabIndex = 10;
 			this->lRightBorder->Text = L"B:";
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(272, 44);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->TabIndex = 11;
+			this->button1->Text = L"button1";
+			this->button1->UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(91, 44);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 12;
+			this->button2->Text = L"button2";
+			this->button2->UseVisualStyleBackColor = true;
+			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(181, 44);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(75, 23);
+			this->button3->TabIndex = 13;
+			this->button3->Text = L"button3";
+			this->button3->UseVisualStyleBackColor = true;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -193,6 +229,9 @@ namespace MyCourseWork {
 			this->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(544, 274);
+			this->Controls->Add(this->button3);
+			this->Controls->Add(this->button2);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->lRightBorder);
 			this->Controls->Add(this->lLeftBorder);
 			this->Controls->Add(this->tRightBorder);
@@ -206,32 +245,47 @@ namespace MyCourseWork {
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
+			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 
 #pragma endregion
-	private: System::Void bResult_Click(System::Object^  sender, System::EventArgs^  e) 
+	private: System::Void bResult_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 
-		GoldenSection g;
-	
-		g.setFunction(MyConvert::toString(tFunction->Text));
-		g.setEps(MyConvert::toDouble(tEps->Text));
+				 /*GoldenSection g;
 
-		g.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
-		g.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
+				 //try
+				 //{
+				 g.setFunction(MyConvert::toString(tFunction->Text));
+				 //}
+				 //catch (const MyExceptions::notValidBrackets)
+				 g.setEps(MyConvert::toDouble(tEps->Text));
 
-		double a = g.findMin();
-		lResult->Text = a.ToString() + "\n";
-		a = g.findMax();
-		lResult->Text += a.ToString() + "\n";
+				 g.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
+				 g.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
 
+				 g.findMin();
+				 double a = g.goldenResult.getMin();
+				 lResult->Text = a.ToString() + "\n";
+				 g.findMax();
+				 a = g.goldenResult.getMax();
+				 lResult->Text += (round(a * 10000000) / 10000000.0).ToString() + "\n";
+				 */
 
-				
+				/* Extreme extreme;
+				 extreme.setEps(MyConvert::toDouble(tEps->Text));
+				 extreme.setFunction(MyConvert::toString(tFunction->Text));
+				 extreme.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
+				 extreme.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
+				 extreme.findExtremes();
+				 double val = extreme.valueOfMin;
+				 */
+	}
 
-		
+	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
 	};
 }

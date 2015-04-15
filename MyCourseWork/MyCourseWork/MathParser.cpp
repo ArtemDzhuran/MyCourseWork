@@ -1,50 +1,27 @@
-#include <map>
-#include <string>
-#include <iostream>
-#include <conio.h>
-#include "ParserResult.cpp"
-#include <ctype.h>
-#include <stdlib.h>
-//#include <exception> 
-#include "Exceptions.cpp"
-#include "MyConvert.cpp"
-
-using namespace std;
+#include "MathParser.h"
 
 
 
-//виключні ситуації
-/*struct ooops : exception 
-{
+	//метод, який переводить у радіани 
+double MathParser::toRadians(double angle)
+	{
+		return angle *  3.14 / 180.0;
+	}
 
-	
-
-};*/
-
-public class MathParser
-{
-
-private:
-	Exceptions e;
-private:
-	map<string, double> variables;
-
-double toRadians(double angle) //метод, який переводить у радіани 
-{
-	return angle * 3.14 / 180.0;
-}
-
-public: MathParser()  //конструктор без параметрів
+	//конструктор без параметрів
+MathParser::MathParser()
 {
 			variables = map<string, double>();
 }
 
-public: void setVariable(string variableName, double variableValue)  //встановлюємо значення змінної
+		//встановлюємо значення змінної
+void MathParser::setVariable(string variableName, double variableValue)
 {
 			variables[variableName] = variableValue;
 }
-		 
-public: double getVariable(string variableName)  //отримуємо значення змінної
+
+		//отримуємо значення змінної
+double MathParser::getVariable(string variableName)
 {
 			if (variables.empty())
 			{
@@ -53,15 +30,13 @@ public: double getVariable(string variableName)  //отримуємо значення змінної
 
 			map<string, double>::iterator it;
 			it = variables.find(variableName);
-			
-				return (*it).second;
-			
-			
-			
+
+			return (*it).second;
+
 }
 
-
-public: double Parse(string s)  //метод в який передаємо рядок для визначення значення
+		//метод в який передаємо рядок для визначення значення
+double MathParser::Parse(string s)
 {
 
 			Result result = PlusMinus(s);
@@ -74,7 +49,8 @@ public: double Parse(string s)  //метод в який передаємо рядок для визначення зн
 			return result.acc;
 }
 
-private: Result PlusMinus(string s) //пошуку плюсу мінусу та обчислення
+		//пошуку плюсу мінусу та обчислення
+Result MathParser::PlusMinus(string s)
 {
 			 Result current = MulDiv(s);
 			 double acc = current.acc;
@@ -97,10 +73,11 @@ private: Result PlusMinus(string s) //пошуку плюсу мінусу та обчислення
 			 return  Result(acc, current.rest);
 }
 
-private: Result Bracket(string s)  //пошук дужок
+		 //пошук дужок
+Result MathParser::Bracket(string s)
 {
 			 char zeroChar = s[0];
-			 
+
 			 if (zeroChar == '(')
 			 {
 				 Result r = PlusMinus(s.substr(1, s.length()));
@@ -118,24 +95,25 @@ private: Result Bracket(string s)  //пошук дужок
 			 return FunctionVariable(s);
 }
 
-private: Result FunctionVariable(string s) 
+		 // пошук функції або змінної
+Result MathParser::FunctionVariable(string s)
 {
 			 string f = "";
 			 int i = 0;
 			 // пошук функції або змінної(ім*я обов*язково повинно починатись з букви
-			 while ((unsigned)i <= s.length() && (isalpha(s[i]) /*|| (isdigit(s[i]) && i >= 0)*/)) 
+			 while ((unsigned)i <= s.length() && (isalpha(s[i]) /* || (isdigit(s[i])&& i >= 0)*/))
 			 {
 				 f += s[i];
 				 i++;
 			 }
-			 if (f != "") 
+			 if (f != "")
 			 { // якщо щось знайшли
-				 if (s.length() >= (unsigned)i && s[i] == '(') 
+				 if (s.length() >= (unsigned)i && s[i] == '(')
 				 { // і наступний символ дужка - це функція
-					 Result r = Bracket(s.substr(i,s.length()));//was f.length
+					 Result r = Bracket(s.substr(i, s.length()));//was f.length
 					 return processFunction(f, r);
 				 }
-				 else 
+				 else
 				 { // інакше - змінна
 					 return  Result(getVariable(f), s.substr(i, s.length()));//erase=substr;was f.length
 				 }
@@ -143,7 +121,8 @@ private: Result FunctionVariable(string s)
 			 return Num(s);
 }
 
-private: Result MulDiv(string s)   //множення ділення та обчислення результату
+		 //множення ділення та обчислення результату
+Result MathParser::MulDiv(string s)
 {
 			 Result current = Bracket(s);
 
@@ -166,6 +145,10 @@ private: Result MulDiv(string s)   //множення ділення та обчислення результату
 				 }
 				 else
 				 {
+					 if (right.acc == 0)
+					 {
+						 throw e.divisionByZero();
+					 }
 					 acc /= right.acc;
 				 }
 
@@ -173,7 +156,8 @@ private: Result MulDiv(string s)   //множення ділення та обчислення результату
 			 }
 }
 
-private: Result Num(string s)   //пошук числа
+		 //пошук числа
+Result MathParser::Num(string s)
 {
 			 int i = 0;
 			 int dot_cnt = 0;
@@ -185,10 +169,10 @@ private: Result Num(string s)   //пошук числа
 				 s = s.substr(1, s.length());
 			 }
 			 // дозволяємо лише цифри та точку
-			 while ((unsigned)i < s.length() && (isdigit(s[i]) || s[i] == ','))
+			 while ((unsigned)i < s.length() && (isdigit(s[i]) || s[i] == '.'))
 			 {
 				 // але також робимо перевірку чи лише одна точка
-				 if (s[i] == ',' && ++dot_cnt > 1)
+				 if (s[i] == '.' && ++dot_cnt > 1)
 				 {
 					 throw e.notValidNum();
 				 }
@@ -201,7 +185,7 @@ private: Result Num(string s)   //пошук числа
 			 }
 
 			 double dPart = atof(s.substr(0, i).c_str());
-			 			 
+
 			 //double dPart = atof(s.erase(0,i).c_str());
 			 if (negative) dPart = -dPart;
 			 string restPart = s.substr(i, s.length());
@@ -209,8 +193,8 @@ private: Result Num(string s)   //пошук числа
 			 return  Result(dPart, restPart);
 }
 
-		 
-private: Result processFunction(string func, Result r) // Визначення всіх функцій які ми можемо використовувати 
+		 // Визначення всіх функцій які ми можемо використовувати 
+Result MathParser::processFunction(string func, Result r)
 {
 			 try
 			 {
@@ -224,20 +208,15 @@ private: Result processFunction(string func, Result r) // Визначення всіх функці
 				 }
 				 else if (func == "tan")
 				 {
-					 if (r.rest == "0")
-					 {
-						 throw(&Exceptions::notValidArgument  );
-					 }
 					 return  Result(tan(toRadians(r.acc)), r.rest);
 				 }
 				 else if (func == "ctan")
 				 {
-					 if (r.rest == "0")
+					 if (tan(toRadians(r.acc) == 0))
 					 {
-						 throw(&Exceptions::notValidArgument);
+						 throw e.divisionByZero();
 					 }
-					 
-					 return  Result(1/tan(toRadians(r.acc)), r.rest);
+					 return  Result(1 / tan(toRadians(r.acc)), r.rest);
 				 }
 				 else if (func == "exp")
 				 {
@@ -246,9 +225,9 @@ private: Result processFunction(string func, Result r) // Визначення всіх функці
 				 else if (func == "ln")
 				 {
 					 if (MyConvert::toDouble(r.rest) < 1)
-					// if (Convert.SysStringToDouble(toSysString(r.rest)) < 1)
+						 // if (Convert.SysStringToDouble(toSysString(r.rest)) < 1)
 					 {
-						 throw(&Exceptions::notValidArgument);
+						 throw e.notValidArgument();
 					 }
 					 return  Result(log(r.acc), r.rest);
 				 }
@@ -256,27 +235,25 @@ private: Result processFunction(string func, Result r) // Визначення всіх функці
 				 {
 					 if (MyConvert::toDouble(r.rest) < 0)
 					 {
-						 throw(&Exceptions::notValidArgument);
+						 throw e.notValidArgument();
 					 }
 					 return  Result(sqrt(r.acc), r.rest);
 				 }
 
-				 /* else if (func == "^")
-				 {
-				 string str =  Result(pow(r.acc,r.rest[0]), r.rest);
-				 }*/
 				 else
 				 {
 					 cout << "function '" + func + "' is not defined";
 
 				 }
 			 }
-			 catch (exception)
+			 catch (...)
 			 {
-				 //тут виключну ситуацію потрібно обробити
+
 			 }
 
 			 return r;
 }
 
-};
+MathParser::~MathParser()
+{
+}

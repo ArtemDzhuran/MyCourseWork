@@ -1,14 +1,12 @@
-#include <msclr\marshal_cppstd.h>
-#include <string>
+#include "MyConvert.h"
 
-using namespace System::Runtime::InteropServices;
-using namespace std;
 
-static class MyConvert
+MyConvert::MyConvert()
 {
-public:
+}
 
-	static double toDouble(System::String^ stringValue)
+
+	double MyConvert::toDouble(System::String^ stringValue)
 	{
 		double value;
 		try
@@ -26,7 +24,7 @@ public:
 		return value;
 	}
 
-	static double toDouble(string stringValue)
+	double MyConvert::toDouble(string stringValue)
 	{
 		double value;
 		try
@@ -44,18 +42,17 @@ public:
 		return value;
 	}
 
-	static System::String^ toSysString(string _value)
+	System::String^ MyConvert::toSysString(string _value)
 	{
 		return gcnew System::String(_value.c_str());
 	}
 
 
-	static string toString(System::String^ value)
+	string MyConvert::toString(System::String^ value)
 	{
 		return msclr::interop::marshal_as<std::string>(value);
 	}
 
-	
-
-};
-
+MyConvert::~MyConvert()
+{
+}
