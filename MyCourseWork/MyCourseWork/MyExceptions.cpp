@@ -20,6 +20,4 @@ const char* MyExceptions::notValidArgument()  _NOEXCEPT{ return "Not valid argum
 //Ділення на нуль
 const char* MyExceptions::divisionByZero()  _NOEXCEPT{ return "Division by zero"; }
 
-MyExceptions::~MyExceptions()
-{
-}
+

@@ -9,6 +9,8 @@ class MyConvert
 {
 public:
 
+	MyConvert();
+
 	static double toDouble(System::String^ stringValue);
 
 	static double toDouble(string stringValue);
@@ -18,8 +20,8 @@ public:
 
 	static string toString(System::String^ value);
 
-	MyConvert();
+	
 
-	~MyConvert();
+
 };
 

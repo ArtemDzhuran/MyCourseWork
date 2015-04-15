@@ -8,6 +8,4 @@ Result::Result(double v, string r)
 	rest = r;
 }
 
-Result::~Result()
-{
-}
+

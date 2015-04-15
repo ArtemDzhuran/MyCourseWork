@@ -11,6 +11,6 @@ public:
 	const char* canNotGetValidNum();
 	const char* notValidArgument();
 	const char* divisionByZero();
-	~MyExceptions();
+	
 };
 

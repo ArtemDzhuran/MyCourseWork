@@ -46,6 +46,6 @@ private: Result Num(string s);
 		 
 private: Result processFunction(string func, Result r);
 
-	~MathParser();
-};
+
+};/*public:	~MathParser();*/
 

@@ -1,9 +1,9 @@
 #pragma once
 
-//#include "GoldenSection.cpp"
-//#include "MyExceptions.cpp"
+#include "GoldenSection.h"
+#include "MyExceptions.h"
 #include <math.h>
-//#include "Extreme.cpp"
+#include "Extreme.h"
 
 using namespace std;
 
@@ -245,7 +245,7 @@ namespace MyCourseWork {
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
-			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
+			//this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -255,7 +255,7 @@ namespace MyCourseWork {
 	private: System::Void bResult_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 
-				 /*GoldenSection g;
+				/* GoldenSection g;
 
 				 //try
 				 //{
@@ -275,17 +275,19 @@ namespace MyCourseWork {
 				 lResult->Text += (round(a * 10000000) / 10000000.0).ToString() + "\n";
 				 */
 
-				/* Extreme extreme;
+				 Extreme extreme;
 				 extreme.setEps(MyConvert::toDouble(tEps->Text));
 				 extreme.setFunction(MyConvert::toString(tFunction->Text));
 				 extreme.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
 				 extreme.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
 				 extreme.findExtremes();
-				 double val = extreme.valueOfMin;
-				 */
+				 double val = extreme.valueOfMin();
+				 lResult->Text += (round(val * 10000000) / 10000000.0).ToString() + "\n";
+				 
 	}
 
-	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
-	}
+	/*private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e)
+	{
+	}*/
 	};
 }

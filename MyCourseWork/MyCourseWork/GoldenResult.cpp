@@ -61,6 +61,4 @@ double GoldenResult::getMax()
 		return _max;
 	}
 
-GoldenResult::~GoldenResult()
-{
-}
+

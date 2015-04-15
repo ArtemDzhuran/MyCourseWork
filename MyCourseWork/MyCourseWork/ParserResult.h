@@ -14,6 +14,6 @@ public:
 	//збереження нашого результату
 	Result(double v, string r);
 
-	~Result();
+	
 };
 

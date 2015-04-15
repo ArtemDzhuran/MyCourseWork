@@ -50,6 +50,6 @@ public:
 
 	void findMin();
 
-	~GoldenSection();
+
 };
 

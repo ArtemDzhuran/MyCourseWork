@@ -254,6 +254,6 @@ Result MathParser::processFunction(string func, Result r)
 			 return r;
 }
 
-MathParser::~MathParser()
+/*MathParser::~MathParser()
 {
-}
+}*/

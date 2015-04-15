@@ -38,6 +38,6 @@ public:
 
 	double getMax();
 
-	~GoldenResult();
+	
 };
 

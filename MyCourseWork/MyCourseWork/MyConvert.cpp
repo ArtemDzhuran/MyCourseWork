@@ -53,6 +53,4 @@ MyConvert::MyConvert()
 		return msclr::interop::marshal_as<std::string>(value);
 	}
 
-MyConvert::~MyConvert()
-{
-}
+
