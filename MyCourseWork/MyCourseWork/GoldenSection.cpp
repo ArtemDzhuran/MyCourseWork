@@ -9,9 +9,9 @@ class GoldenSection
 {
 private:
 	string _function;
-	double eps; //точність
-	double leftBorder; 
-	double rightBorder;
+	double _eps; //точність
+	double _leftBorder; 
+	double _rightBorder;
 	MathParser mathParser;
 	GoldenResult goldenResult;
 
@@ -24,9 +24,9 @@ public:
 	GoldenSection()
 	{
 		_function = "";
-		eps = 0.0001;
-		leftBorder = -1;
-		rightBorder = 1;
+		_eps = 0.0001;
+		_leftBorder = -1;
+		_rightBorder = 1;
 	}
 
 	GoldenSection(string function) 
@@ -34,12 +34,63 @@ public:
 		_function = function;
 	}
 
-/*	GoldenSection(const GoldenSection& goldenSection) :GoldenSection()
+
+	bool isValidBrackets(string s)
 	{
-	}*/
+		int openBrackets = 0;
+		int closeBrackets = 0;
+		for (int i = 0; i < s.length(); i++)
+		{
+			if (s[i] == '(')
+				openBrackets++;
+			if (s[i] = ')')
+				closeBrackets++;
+		}
+
+		if (openBrackets != closeBrackets)
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	void setEps(double eps)
+	{
+		_eps = eps;
+	}
+
+	void setLeftBorder(double leftBorder)
+	{
+		_leftBorder = leftBorder;
+	}
+
+	void setRightBorder(double rightBorder)
+	{
+		_rightBorder = rightBorder;
+	}
+
+	double getEps()
+	{
+		return _eps;
+	}
+
+	double getRightBorder()
+	{
+		return _rightBorder;
+	}
+
+	double getLeftBorder()
+	{
+		return _leftBorder;
+	}
 
 	void setFunction(string function)
 	{
+		if (!isValidBrackets(function))
+		{
+			throw(&Exceptions::notValidBrackets);
+		}
 		_function = function;
 	}
 
@@ -48,54 +99,75 @@ public:
 		return _function;
 	}
 
-	double find()
+	double find(bool isLess)
 	{
-		mathParser.setVariable("x", leftBorder);
+		mathParser.setVariable("x", _leftBorder);
 		double tmp = mathParser.Parse(_function);
 		goldenResult.setMax(tmp);
 		tmp = mathParser.Parse(_function);
 		goldenResult.setMin(tmp);
-		goldenResult.setXMax(leftBorder);
-		goldenResult.setXMin(leftBorder);
+		goldenResult.setXMax(_leftBorder);
+		goldenResult.setXMin(_leftBorder);
 
 		do
 		{
-			double x1 = rightBorder - ((rightBorder - leftBorder) / t);
-			double x2 = leftBorder + ((rightBorder - leftBorder) / t);
+			double x1 = _rightBorder - ((_rightBorder - _leftBorder) / t);
+			double x2 = _leftBorder + ((_rightBorder - _leftBorder) / t);
 			mathParser.setVariable("x", x1);
 			double y1 = mathParser.Parse(_function);
 			mathParser.setVariable("x", x2);
 			double y2 = mathParser.Parse(_function);
 
-			if (y1 > y2)
-			{
-				leftBorder = x1;
+
+			if (isLess){
+				if (y1 >= y2) //min
+				{
+					_leftBorder = x1;
+				}
+				else
+				{
+					_rightBorder = x2;
+				}
 			}
 			else
 			{
-				rightBorder = x2;
+				if (y1 <= y2) //max
+				{
+					_leftBorder = x1;
+				}
+				else
+				{
+					_rightBorder = x2;
+				}
 			}
-		} while (fabs(leftBorder - rightBorder) > eps);
+		} while (fabs(_leftBorder - _rightBorder) > _eps);
 
 
-		//if (goldenResult.getMin() > mathParser.Parse(_function))
-		//{
+		if (isLess){
 			goldenResult.setMin(mathParser.Parse(_function));
-			goldenResult.setXMin(leftBorder);
-		//}
+			goldenResult.setXMin(_leftBorder);
+			return goldenResult.getMin();
+		}
+		else
+		{
+			goldenResult.setMax(mathParser.Parse(_function));
+			goldenResult.setXMax(_leftBorder);
+			return goldenResult.getMin();
+		}
 		
-		return goldenResult.getMin();
+		
+		return 0.0;
 		
 	}
 
 	double findMax()
 	{
-	
+		return find(false);
 	}
 
 	double findMin()
 	{
-
+		return find(true);
 	}
 
 

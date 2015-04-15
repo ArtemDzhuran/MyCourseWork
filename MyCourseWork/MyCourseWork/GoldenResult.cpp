@@ -1,6 +1,7 @@
 
 class GoldenResult
 {
+
 private:
 	double _xMin;
 	double _xMax;

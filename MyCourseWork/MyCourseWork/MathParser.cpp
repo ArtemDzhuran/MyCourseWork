@@ -5,67 +5,65 @@
 #include "ParserResult.cpp"
 #include <ctype.h>
 #include <stdlib.h>
-#include <exception> 
+//#include <exception> 
+#include "Exceptions.cpp"
+#include "MyConvert.cpp"
 
 using namespace std;
 
 
 
-
-struct ooops : exception 
+//виключні ситуації
+/*struct ooops : exception 
 {
-	const char* what() const _NOEXCEPT{ return "Ooops!\n"; }
-	const char* yhuyu() const _NOEXCEPT{ return "9iuy!\n"; }
 
-	const char* notValidNum() const _NOEXCEPT{ return "not valid number '"; }
-	const char* canNotGetValidNum() const _NOEXCEPT{ return "can't get valid number"; }
+	
 
-
-};
+};*/
 
 public class MathParser
 {
-private:
-	ooops e;
 
-double toRadians(double angle)
+private:
+	Exceptions e;
+private:
+	map<string, double> variables;
+
+double toRadians(double angle) //метод, який переводить у радіани 
 {
 	return angle * 3.14 / 180.0;
 }
 
-private: map<string, double> variables;
-
-public: MathParser()
+public: MathParser()  //конструктор без параметрів
 {
 			variables = map<string, double>();
 }
 
-public: void setVariable(string variableName, double variableValue)
+public: void setVariable(string variableName, double variableValue)  //встановлюємо значення змінної
 {
 			variables[variableName] = variableValue;
 }
-
-public: double getVariable(string variableName)
+		 
+public: double getVariable(string variableName)  //отримуємо значення змінної
 {
+			if (variables.empty())
+			{
+				return 0.0;
+			}
+
 			map<string, double>::iterator it;
-			
-		/*	for (std::map<string, double>::iterator it = variables.begin(); it != variables.end(); ++it){
-				if (it->first == variableName)
-				//if (variables.find(variableName) == variables.end && variables.end->first != variableName)
-				{
-
-					cout << "Error: Try get unexists variable '" + variableName + "'";
-					return 0.0;
-				}
-
-			}*/
 			it = variables.find(variableName);
-			return (*it).second;
+			
+				return (*it).second;
+			
+			
 			
 }
 
-public: double Parse(string s)
+
+public: double Parse(string s)  //метод в який передаємо рядок для визначення значення
 {
+
 			Result result = PlusMinus(s);
 			if (result.rest != "")
 			{
@@ -76,7 +74,7 @@ public: double Parse(string s)
 			return result.acc;
 }
 
-private: Result PlusMinus(string s)
+private: Result PlusMinus(string s) //пошуку плюсу мінусу та обчислення
 {
 			 Result current = MulDiv(s);
 			 double acc = current.acc;
@@ -99,7 +97,7 @@ private: Result PlusMinus(string s)
 			 return  Result(acc, current.rest);
 }
 
-private: Result Bracket(string s)
+private: Result Bracket(string s)  //пошук дужок
 {
 			 char zeroChar = s[0];
 			 
@@ -120,29 +118,32 @@ private: Result Bracket(string s)
 			 return FunctionVariable(s);
 }
 
-private: Result FunctionVariable(string s)
+private: Result FunctionVariable(string s) 
 {
 			 string f = "";
 			 int i = 0;
-			 // ищем название функции или переменной
-			 // имя обязательно должна начинаться с буквы
-			 while ((unsigned)i <= s.length() && (isalpha(s[i]) /*|| (isdigit(s[i]) && i >= 0)*/)) {
+			 // пошук функції або змінної(ім*я обов*язково повинно починатись з букви
+			 while ((unsigned)i <= s.length() && (isalpha(s[i]) /*|| (isdigit(s[i]) && i >= 0)*/)) 
+			 {
 				 f += s[i];
 				 i++;
 			 }
-			 if (f != "") { // если что-нибудь нашли
-				 if (s.length() >= (unsigned)i && s[i] == '(') { // и следующий символ скобка значит - это функция
+			 if (f != "") 
+			 { // якщо щось знайшли
+				 if (s.length() >= (unsigned)i && s[i] == '(') 
+				 { // і наступний символ дужка - це функція
 					 Result r = Bracket(s.substr(i,s.length()));//was f.length
 					 return processFunction(f, r);
 				 }
-				 else { // иначе - это переменная
+				 else 
+				 { // інакше - змінна
 					 return  Result(getVariable(f), s.substr(i, s.length()));//erase=substr;was f.length
 				 }
 			 }
 			 return Num(s);
 }
 
-private: Result MulDiv(string s)
+private: Result MulDiv(string s)   //множення ділення та обчислення результату
 {
 			 Result current = Bracket(s);
 
@@ -172,28 +173,29 @@ private: Result MulDiv(string s)
 			 }
 }
 
-private: Result Num(string s)
+private: Result Num(string s)   //пошук числа
 {
 			 int i = 0;
 			 int dot_cnt = 0;
 			 bool negative = false;
-			 // число также может начинаться с минуса
-			 if (s[0] == '-'){
+			 // число також може починатись з мінуса
+			 if (s[0] == '-')
+			 {
 				 negative = true;
 				 s = s.substr(1, s.length());
 			 }
-			 // разрешаем только цифры и точку
-			 while ((unsigned)i < s.length() && (isdigit(s[i]) || s[i] == '.'))
+			 // дозволяємо лише цифри та точку
+			 while ((unsigned)i < s.length() && (isdigit(s[i]) || s[i] == ','))
 			 {
-				 // но также проверям, что в числе может быть только одна точка!
-				 if (s[i] == '.' && ++dot_cnt > 1)
+				 // але також робимо перевірку чи лише одна точка
+				 if (s[i] == ',' && ++dot_cnt > 1)
 				 {
 					 throw e.notValidNum();
 				 }
 				 i++;
 			 }
 			 if (i == 0)
-			 { // что-либо похожее на число мы не нашли
+			 { // якщо щось схоже на число ми не знайшли
 
 				 throw e.canNotGetValidNum();
 			 }
@@ -207,8 +209,8 @@ private: Result Num(string s)
 			 return  Result(dPart, restPart);
 }
 
-		 // Тут определяем все нашие функции, которыми мы можем пользоватся в формулах
-private: Result processFunction(string func, Result r)
+		 
+private: Result processFunction(string func, Result r) // Визначення всіх функцій які ми можемо використовувати 
 {
 			 try
 			 {
@@ -222,7 +224,20 @@ private: Result processFunction(string func, Result r)
 				 }
 				 else if (func == "tan")
 				 {
+					 if (r.rest == "0")
+					 {
+						 throw(&Exceptions::notValidArgument  );
+					 }
 					 return  Result(tan(toRadians(r.acc)), r.rest);
+				 }
+				 else if (func == "ctan")
+				 {
+					 if (r.rest == "0")
+					 {
+						 throw(&Exceptions::notValidArgument);
+					 }
+					 
+					 return  Result(1/tan(toRadians(r.acc)), r.rest);
 				 }
 				 else if (func == "exp")
 				 {
@@ -230,11 +245,19 @@ private: Result processFunction(string func, Result r)
 				 }
 				 else if (func == "ln")
 				 {
-					 
+					 if (MyConvert::toDouble(r.rest) < 1)
+					// if (Convert.SysStringToDouble(toSysString(r.rest)) < 1)
+					 {
+						 throw(&Exceptions::notValidArgument);
+					 }
 					 return  Result(log(r.acc), r.rest);
 				 }
 				 else if (func == "sqrt")
 				 {
+					 if (MyConvert::toDouble(r.rest) < 0)
+					 {
+						 throw(&Exceptions::notValidArgument);
+					 }
 					 return  Result(sqrt(r.acc), r.rest);
 				 }
 
@@ -250,7 +273,7 @@ private: Result processFunction(string func, Result r)
 			 }
 			 catch (exception)
 			 {
-				 //тут исключение можно обработать
+				 //тут виключну ситуацію потрібно обробити
 			 }
 
 			 return r;

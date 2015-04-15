@@ -19,6 +19,12 @@
     <Filter Include="Файлы исходного кода\GoldenSection">
       <UniqueIdentifier>{f7c48bf3-9b99-4a31-b904-523b6b38e34f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы исходного кода\Exeptions">
+      <UniqueIdentifier>{b6182b86-5c3e-4e12-b48b-5cfd7454e84a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Convert">
+      <UniqueIdentifier>{cc682567-9590-4fe7-aedc-fb4632e7cce8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp">
@@ -35,6 +41,12 @@
     </ClCompile>
     <ClCompile Include="GoldenResult.cpp">
       <Filter>Файлы исходного кода\GoldenSection</Filter>
+    </ClCompile>
+    <ClCompile Include="Exceptions.cpp">
+      <Filter>Файлы исходного кода\Exeptions</Filter>
+    </ClCompile>
+    <ClCompile Include="MyConvert.cpp">
+      <Filter>Файлы исходного кода\Convert</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

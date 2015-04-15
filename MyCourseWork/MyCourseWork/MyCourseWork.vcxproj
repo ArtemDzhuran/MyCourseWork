@@ -79,6 +79,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MyConvert.cpp" />
+    <ClCompile Include="Exceptions.cpp" />
     <ClCompile Include="GoldenResult.cpp" />
     <ClCompile Include="GoldenSection.cpp" />
     <ClCompile Include="MathParser.cpp" />
