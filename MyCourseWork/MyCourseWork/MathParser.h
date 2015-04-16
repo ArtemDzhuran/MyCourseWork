@@ -11,41 +11,47 @@
 
 using namespace std;
 
-class MathParser
+class MathParser //Клас, який аналізує рядок і рахує його значення
 {
+
 public:
 	MyExceptions e;
+
 private:
 	map<string, double> variables;
 
-
+			//метод, який переводить у радіани 
 	double toRadians(double angle);
 
+			//конструктор без параметрів
+	public: MathParser();
+
+			//встановлюємо значення змінної
+	public: void setVariable(string variableName, double variableValue);
 	
-public: MathParser();
+			//отримуємо значення змінної
+	public: double getVariable(string variableName);
+	
+			//метод в який передаємо рядок для визначення значення
+	public: double Parse(string s);
 
-public: void setVariable(string variableName, double variableValue);
+			//пошуку плюсу мінусу або степеня та обчислення
+	private: Result PlusMinus(string s);
+
+			 //пошук дужок	 
+	private: Result Bracket(string s);
+
+			 // пошук функції або змінної	 
+	private: Result FunctionVariable(string s);
+
+			 //множення ділення та обчислення результату	 
+	private: Result MulDiv(string s);
 		
-public: double getVariable(string variableName);
-		
-public: double Parse(string s);
+			 //пошук числа
+	private: Result Num(string s);
+	
+			 // Визначення всіх функцій які ми можемо використовувати 
+	private: Result processFunction(string func, Result r);
 
-		
-private: Result PlusMinus(string s);
-
-		 
-private: Result Bracket(string s);
-
-		 
-private: Result FunctionVariable(string s);
-
-		 
-private: Result MulDiv(string s);
-		
-private: Result Num(string s);
-		 
-private: Result processFunction(string func, Result r);
-
-
-};/*public:	~MathParser();*/
+};
 

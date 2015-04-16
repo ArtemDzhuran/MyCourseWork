@@ -1,6 +1,7 @@
 #include "Extreme.h"
 
 
+		//конструктор без параметрів
 Extreme::Extreme()
 {
 	_derivative = {};
@@ -9,47 +10,55 @@ Extreme::Extreme()
 	_function = "";
 }
 
-
+		//встановлює значення функції
 void Extreme::setFunction(string function)
 {
 	_function = function;
 }
-
+		
+		//отримує значення функції
 string Extreme::getFunction()
 {
 	return _function;
 }
 
+		//встановлює значення точності
 void Extreme::setEps(double eps)
 {
 	_eps = eps;
 }
 
+		//отримує значення точності
 double Extreme::getEps()
 {
 	return _eps;
 }
 
+		//отримує значення правої межі
 double Extreme::getRightBorder()
 {
 	return _rightBorder;
 }
 
+		//отримує значення лівої межі
 double Extreme::getLeftBorder()
 {
 	return _leftBorder;
 }
 
+		//встановлює значення лівої межі
 void Extreme::setLeftBorder(double leftBorder)
 {
 	_leftBorder = leftBorder;
 }
 
+		//встановлює значення правої межі
 void Extreme::setRightBorder(double rightBorder)
 {
 	_rightBorder = rightBorder;
 }
 
+		//метод, який шукає значення похідної в точці
 double Extreme::findDerivative(double point)
 {
 	mathParser.setVariable("x", point + _eps);
@@ -59,6 +68,7 @@ double Extreme::findDerivative(double point)
 	return tmp / _eps;
 }
 
+		//метод, який шукає екстремуми функції
 void Extreme::findExtremes()
 {
 	double tmp;
@@ -75,6 +85,7 @@ void Extreme::findExtremes()
 	}
 }
 
+		//метод, який визначає значення елементу, де функція набуває мінімального значення
 int Extreme::indexOfMin()
 {
 	if (_derivative.empty())
@@ -91,6 +102,7 @@ int Extreme::indexOfMin()
 	return index;
 }
 
+		//метод, який визначає значення елементу, де функція набуває максимального значення
 int Extreme::indexOfMax()
 {
 	if (_derivative.empty())
@@ -107,6 +119,7 @@ int Extreme::indexOfMax()
 	return index;
 }
 
+		//метод, який визначає мінімум функції
 double Extreme::valueOfMin()
 {
 	if (_derivative.empty())
@@ -123,6 +136,7 @@ double Extreme::valueOfMin()
 	return _derivative[index];
 }
 
+		//метод, який визначає максимум функції
 double Extreme::valueOfMax()
 {
 	if (_derivative.empty())
@@ -138,4 +152,3 @@ double Extreme::valueOfMax()
 	}
 	return _derivative[index];
 }
-

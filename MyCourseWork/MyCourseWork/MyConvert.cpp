@@ -1,56 +1,59 @@
 #include "MyConvert.h"
 
-
+		//Конструктор без параметрів
 MyConvert::MyConvert()
 {
+
 }
 
-
-	double MyConvert::toDouble(System::String^ stringValue)
+		//Перевід з System::String в double
+double MyConvert::toDouble(System::String^ stringValue)
+{
+	double value;
+	try
 	{
-		double value;
-		try
-		{
-			value = double::Parse(stringValue);
-		}
-		catch (System::FormatException ^e)
-		{
-			return 0;
-		}
-		catch (...)
-		{
-			return 0;
-		}
-		return value;
+		value = double::Parse(stringValue);
 	}
-
-	double MyConvert::toDouble(string stringValue)
+	catch (System::FormatException ^e)
 	{
-		double value;
-		try
-		{
-			value = atof(stringValue.c_str());
-		}
-		catch (System::FormatException ^e)
-		{
-			return 0;
-		}
-		catch (...)
-		{
-			return 0;
-		}
-		return value;
+		return 0;
 	}
-
-	System::String^ MyConvert::toSysString(string _value)
+	catch (...)
 	{
-		return gcnew System::String(_value.c_str());
+		return 0;
 	}
+	return value;
+}
 
-
-	string MyConvert::toString(System::String^ value)
+		//Перевід з Std::String в double
+double MyConvert::toDouble(string stringValue)
+{
+	double value;
+	try
 	{
-		return msclr::interop::marshal_as<std::string>(value);
+		value = atof(stringValue.c_str());
 	}
+	catch (System::FormatException ^e)
+	{
+		return 0;
+	}
+	catch (...)
+	{
+		return 0;
+	}
+	return value;
+}
+
+		//Перевід з Std::String в System::String
+System::String^ MyConvert::toSysString(string _value)
+{
+	return gcnew System::String(_value.c_str());
+}
+
+		//Перевід з System::String в Std::String
+string MyConvert::toString(System::String^ value)
+{
+	return msclr::interop::marshal_as<std::string>(value);
+}
 
 

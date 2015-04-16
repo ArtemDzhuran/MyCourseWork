@@ -10,7 +10,7 @@ using namespace std;
 namespace MyCourseWork {
 
 
-	//MyExceptions excep;
+	MyExceptions excep;
 
 
 	using namespace System;
@@ -74,6 +74,7 @@ namespace MyCourseWork {
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
+	private: System::Windows::Forms::Label^  lResult1;
 
 
 
@@ -107,6 +108,7 @@ namespace MyCourseWork {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->lResult1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// bResult
@@ -125,7 +127,7 @@ namespace MyCourseWork {
 			this->tFunction->Name = L"tFunction";
 			this->tFunction->Size = System::Drawing::Size(298, 22);
 			this->tFunction->TabIndex = 1;
-			this->tFunction->Text = L"x*x+9";
+			this->tFunction->Text = L"x^2+34";
 			// 
 			// lFunction
 			// 
@@ -140,7 +142,7 @@ namespace MyCourseWork {
 			// 
 			this->tEps->Location = System::Drawing::Point(62, 184);
 			this->tEps->Name = L"tEps";
-			this->tEps->Size = System::Drawing::Size(257, 22);
+			this->tEps->Size = System::Drawing::Size(148, 22);
 			this->tEps->TabIndex = 4;
 			this->tEps->Text = L"0,01";
 			// 
@@ -156,10 +158,11 @@ namespace MyCourseWork {
 			// lResult
 			// 
 			this->lResult->AutoSize = true;
-			this->lResult->Location = System::Drawing::Point(379, 184);
+			this->lResult->Location = System::Drawing::Point(269, 221);
 			this->lResult->Name = L"lResult";
-			this->lResult->Size = System::Drawing::Size(0, 13);
+			this->lResult->Size = System::Drawing::Size(77, 13);
 			this->lResult->TabIndex = 6;
+			this->lResult->Text = L"GoldenResult";
 			// 
 			// tLeftBorder
 			// 
@@ -171,7 +174,7 @@ namespace MyCourseWork {
 			// 
 			// tRightBorder
 			// 
-			this->tRightBorder->Location = System::Drawing::Point(219, 121);
+			this->tRightBorder->Location = System::Drawing::Point(201, 124);
 			this->tRightBorder->Name = L"tRightBorder";
 			this->tRightBorder->Size = System::Drawing::Size(100, 22);
 			this->tRightBorder->TabIndex = 8;
@@ -222,6 +225,15 @@ namespace MyCourseWork {
 			this->button3->Text = L"button3";
 			this->button3->UseVisualStyleBackColor = true;
 			// 
+			// lResult1
+			// 
+			this->lResult1->AutoSize = true;
+			this->lResult1->Location = System::Drawing::Point(269, 169);
+			this->lResult1->Name = L"lResult1";
+			this->lResult1->Size = System::Drawing::Size(57, 13);
+			this->lResult1->TabIndex = 14;
+			this->lResult1->Text = L"Derivative";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -229,6 +241,7 @@ namespace MyCourseWork {
 			this->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(544, 274);
+			this->Controls->Add(this->lResult1);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
@@ -245,7 +258,6 @@ namespace MyCourseWork {
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
-			//this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -255,39 +267,47 @@ namespace MyCourseWork {
 	private: System::Void bResult_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 
-				/* GoldenSection g;
+				  GoldenSection g;
 
-				 //try
-				 //{
-				 g.setFunction(MyConvert::toString(tFunction->Text));
-				 //}
-				 //catch (const MyExceptions::notValidBrackets)
-				 g.setEps(MyConvert::toDouble(tEps->Text));
+				//  try
+				//  {
+				  g.setFunction(MyConvert::toString(tFunction->Text));
+				/*  }
+				  catch ()
+				 {
 
-				 g.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
-				 g.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
+				 }*/
+				  g.setEps(MyConvert::toDouble(tEps->Text));
 
-				 g.findMin();
-				 double a = g.goldenResult.getMin();
-				 lResult->Text = a.ToString() + "\n";
-				 g.findMax();
-				 a = g.goldenResult.getMax();
-				 lResult->Text += (round(a * 10000000) / 10000000.0).ToString() + "\n";
-				 */
+				  g.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
+				  g.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
 
-				 Extreme extreme;
-				 extreme.setEps(MyConvert::toDouble(tEps->Text));
-				 extreme.setFunction(MyConvert::toString(tFunction->Text));
-				 extreme.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
-				 extreme.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
-				 extreme.findExtremes();
-				 double val = extreme.valueOfMin();
-				 lResult->Text += (round(val * 10000000) / 10000000.0).ToString() + "\n";
-				 
+				  g.findMin();
+				  double a = g.goldenResult.getMin();
+				  lResult->Text = "GoldenSection::Min:" + (round(a * 10000000) / 10000000.0).ToString() + "\n";
+				  g.findMax();
+				  a = g.goldenResult.getMax();
+				  lResult->Text += "GoldenSection:Max:"+(round(a * 10000000) / 10000000.0).ToString() + "\n";
+
+				
+				  Extreme extreme;
+				  extreme.setEps(MyConvert::toDouble(tEps->Text));
+				  extreme.setFunction(MyConvert::toString(tFunction->Text));
+				  extreme.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
+				  extreme.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
+				  extreme.findExtremes();
+				  double val = extreme.valueOfMin();
+				  lResult1->Text = "Derivative Search:Min:"+ (round(val * 10000000) / 10000000.0).ToString() + "\n";
+				  val = extreme.valueOfMax();
+				  lResult1->Text += "Derivative Search:Max:" + (round(val * 10000000) / 10000000.0).ToString() + "\n";
+				/* MathParser  tmp;
+				 tmp.setVariable("x", 2);
+				 double a = tmp.Parse("x^(-2)");*/
 	}
+				 
+				 
 
-	/*private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e)
-	{
-	}*/
 	};
-}
+
+};
+
