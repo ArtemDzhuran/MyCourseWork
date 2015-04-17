@@ -1,8 +1,8 @@
 #pragma once
-class GoldenResult
+class Result
 {
 
-private:
+protected:
 	//значення х, коли функція досягає мінімального значення
 	double _xMin;
 
@@ -17,10 +17,10 @@ private:
 
 public:
 
-	GoldenResult();
+	Result();
 
 	//Конструктор з параметрами
-	GoldenResult(double min, double xMin, double max, double xMax);
+	Result(double min, double xMin, double max, double xMax);
 
 	void setXMin(double xMin);
 

@@ -89,7 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Extreme.h" />
-    <ClInclude Include="GoldenResult.h" />
+    <ClInclude Include="Result.h" />
     <ClInclude Include="GoldenSection.h" />
     <ClInclude Include="MathParser.h" />
     <ClInclude Include="MyConvert.h" />

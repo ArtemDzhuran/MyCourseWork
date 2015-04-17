@@ -83,9 +83,6 @@
     <ClInclude Include="Extreme.h">
       <Filter>Заголовочные файлы\MaxMin\Extreme</Filter>
     </ClInclude>
-    <ClInclude Include="GoldenResult.h">
-      <Filter>Заголовочные файлы\MaxMin\GoldenSection</Filter>
-    </ClInclude>
     <ClInclude Include="GoldenSection.h">
       <Filter>Заголовочные файлы\MaxMin\GoldenSection</Filter>
     </ClInclude>
@@ -100,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="MyConvert.h">
       <Filter>Заголовочные файлы\Convert</Filter>
+    </ClInclude>
+    <ClInclude Include="Result.h">
+      <Filter>Заголовочные файлы\MaxMin\GoldenSection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

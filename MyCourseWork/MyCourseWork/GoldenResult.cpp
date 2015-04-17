@@ -1,7 +1,8 @@
-#include "GoldenResult.h"
+#include "Result.h"
 
 
-GoldenResult::GoldenResult()
+
+Result::Result()
 {
 	_min = 0;
 	_xMin = 0;
@@ -12,7 +13,7 @@ GoldenResult::GoldenResult()
 
 
 	//Конструктор з параметрами
-GoldenResult::GoldenResult(double min, double xMin, double max, double xMax)
+Result::Result(double min, double xMin, double max, double xMax)
 	{
 		_min = min;
 		_xMin = xMin;
@@ -21,42 +22,42 @@ GoldenResult::GoldenResult(double min, double xMin, double max, double xMax)
 	}
 
 	
-void GoldenResult::setXMin(double xMin)
+void Result::setXMin(double xMin)
 	{
 		_xMin = xMin;
 	}
 
-double GoldenResult::getXMin()
+double Result::getXMin()
 	{
 		return _xMin;
 	}
 
-void GoldenResult::setXMax(double xMax)
+void Result::setXMax(double xMax)
 	{
 		_xMax = xMax;
 	}
 
-double GoldenResult::getXMax()
+double Result::getXMax()
 	{
 		return _xMax;
 	}
 
-void GoldenResult::setMin(double min)
+void Result::setMin(double min)
 	{
 		_min = min;
 	}
 
-double GoldenResult::getMin()
+double Result::getMin()
 	{
 		return _min;
 	}
 
-void GoldenResult::setMax(double max)
+void Result::setMax(double max)
 	{
 		_max = max;
 	}
 
-double GoldenResult::getMax()
+double Result::getMax()
 	{
 		return _max;
 	}
