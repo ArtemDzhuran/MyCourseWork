@@ -2,12 +2,14 @@
 #include <string>
 #include <vector>
 #include "MathParser.h"
+#include "MaxMinResult.h"
 
 using namespace std;
 
 class Extreme
 {
-
+public:
+	MaxMinResult result;
 
 private:
 	string _function;
@@ -17,6 +19,7 @@ private:
 	vector <double> _derivative;
 	vector <double> _points;
 	MathParser mathParser;
+
 
 public:
 			//конструктор без параметрів
@@ -52,7 +55,13 @@ public:
 			//метод, який шукає екстремуми функції
 	void findExtremes();
 
+			// метод, який визначає значення елементу, де функція набуває максимального значення
+	void findMax();
+
 			//метод, який визначає значення елементу, де функція набуває мінімального значення
+	void findMin();
+
+	/*		//метод, який визначає значення елементу, де функція набуває мінімального значення
 	int indexOfMin();
 
 			//метод, який визначає значення елементу, де функція набуває максимального значення
@@ -62,6 +71,6 @@ public:
 	double valueOfMin();
 
 			//метод, який визначає максимум функції
-	double valueOfMax();
+	double valueOfMax();*/
 };
 

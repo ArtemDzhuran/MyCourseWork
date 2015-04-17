@@ -41,8 +41,7 @@ double MathParser::Parse(string s)
 	Result result = PlusMinus(s);
 	if (result.rest != "")
 	{
-		cout << "Error: can't full parse" << endl;
-		cout << "rest: " + result.rest;
+		throw e.notValidNum();
 
 	}
 	return result.acc;

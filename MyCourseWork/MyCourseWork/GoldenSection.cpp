@@ -1,6 +1,7 @@
 #include "GoldenSection.h"
 
 
+
 GoldenSection::GoldenSection()
 {
 	_function = "";
@@ -26,25 +27,7 @@ void GoldenSection::changeComasWithDots(string& str)
 	}
 }
 
-bool GoldenSection::isValidBrackets(string s)
-{
-	int openBrackets = 0;
-	int closeBrackets = 0;
-	for (unsigned int i = 0; i < s.length(); i++)
-	{
-		if (s[i] == '(')
-			openBrackets++;
-		if (s[i] == ')')
-			closeBrackets++;
-	}
 
-	if (openBrackets != closeBrackets)
-	{
-		return false;
-	}
-
-	return true;
-}
 
 void GoldenSection::setEps(double eps)
 {
@@ -78,10 +61,6 @@ double GoldenSection::getLeftBorder()
 
 void GoldenSection::setFunction(string function)
 {
-	if (!isValidBrackets(function))
-	{
-		throw(e.notValidBrackets());
-	}
 
 	changeComasWithDots(function);
 
@@ -97,11 +76,11 @@ void GoldenSection::find(bool isLess)
 {
 	mathParser.setVariable("x", _leftBorder);
 	double tmp = mathParser.Parse(_function);
-	goldenResult.setMax(tmp);
+	result.setMax(tmp);
 	tmp = mathParser.Parse(_function);
-	goldenResult.setMin(tmp);
-	goldenResult.setXMax(_leftBorder);
-	goldenResult.setXMin(_leftBorder);
+	result.setMin(tmp);
+	result.setXMax(_leftBorder);
+	result.setXMin(_leftBorder);
 
 	do
 	{
@@ -138,14 +117,14 @@ void GoldenSection::find(bool isLess)
 
 
 	if (isLess){
-		goldenResult.setMin(mathParser.Parse(_function));
-		goldenResult.setXMin(_leftBorder);
+		result.setMin(mathParser.Parse(_function));
+		result.setXMin(_leftBorder);
 		//return goldenResult.getMin();
 	}
 	else
 	{
-		goldenResult.setMax(mathParser.Parse(_function));
-		goldenResult.setXMax(_leftBorder);
+		result.setMax(mathParser.Parse(_function));
+		result.setXMax(_leftBorder);
 		//return goldenResult.getMin();
 	}
 

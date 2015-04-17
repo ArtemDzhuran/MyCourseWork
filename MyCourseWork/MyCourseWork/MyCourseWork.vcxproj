@@ -79,7 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Extreme.cpp" />
-    <ClCompile Include="GoldenResult.cpp" />
+    <ClCompile Include="MaxMinResult.cpp" />
     <ClCompile Include="GoldenSection.cpp" />
     <ClCompile Include="MathParser.cpp" />
     <ClCompile Include="MyConvert.cpp" />
@@ -89,7 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Extreme.h" />
-    <ClInclude Include="Result.h" />
+    <ClInclude Include="MaxMinResult.h" />
     <ClInclude Include="GoldenSection.h" />
     <ClInclude Include="MathParser.h" />
     <ClInclude Include="MyConvert.h" />

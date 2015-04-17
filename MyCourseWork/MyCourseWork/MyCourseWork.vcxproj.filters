@@ -57,9 +57,6 @@
     <ClCompile Include="Extreme.cpp">
       <Filter>Файлы исходного кода\MaxMin\Extreme</Filter>
     </ClCompile>
-    <ClCompile Include="GoldenResult.cpp">
-      <Filter>Файлы исходного кода\MaxMin\GoldenSection</Filter>
-    </ClCompile>
     <ClCompile Include="GoldenSection.cpp">
       <Filter>Файлы исходного кода\MaxMin\GoldenSection</Filter>
     </ClCompile>
@@ -74,6 +71,9 @@
     </ClCompile>
     <ClCompile Include="MyConvert.cpp">
       <Filter>Файлы исходного кода\Convert</Filter>
+    </ClCompile>
+    <ClCompile Include="MaxMinResult.cpp">
+      <Filter>Файлы исходного кода\MaxMin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -98,8 +98,8 @@
     <ClInclude Include="MyConvert.h">
       <Filter>Заголовочные файлы\Convert</Filter>
     </ClInclude>
-    <ClInclude Include="Result.h">
-      <Filter>Заголовочные файлы\MaxMin\GoldenSection</Filter>
+    <ClInclude Include="MaxMinResult.h">
+      <Filter>Заголовочные файлы\MaxMin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

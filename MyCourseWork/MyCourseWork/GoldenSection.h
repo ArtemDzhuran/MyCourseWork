@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "GoldenResult.h"
+#include "MaxMinResult.h"
 #include "MathParser.h"
 
 using namespace std;
@@ -8,10 +8,10 @@ using namespace std;
 class GoldenSection
 {
 public:
-	GoldenResult goldenResult;
+	MaxMinResult result;
 
 private:
-	MyExceptions e;
+	
 	string _function;
 	double _eps; //точність
 	double _leftBorder;
@@ -25,8 +25,6 @@ public:
 	GoldenSection(string function);
 
 	void changeComasWithDots(string& str);
-
-	bool isValidBrackets(string s);
 
 	void setEps(double eps);
 

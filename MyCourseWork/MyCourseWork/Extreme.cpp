@@ -1,6 +1,8 @@
 #include "Extreme.h"
 
 
+
+
 		//конструктор без параметрів
 Extreme::Extreme()
 {
@@ -85,7 +87,48 @@ void Extreme::findExtremes()
 	}
 }
 
-		//метод, який визначає значення елементу, де функція набуває мінімального значення
+void Extreme::findMax()
+{
+	if (_derivative.empty())
+	{
+		result.setMin(0);
+		result.setXMin(0);
+	}
+	int max = _derivative[0];
+	int index = _leftBorder;
+	for (int i = 0; i < _derivative.size(); i++)
+	{
+		if (max<_derivative[i]);
+		index = i;
+	}
+	result.setMin(max);
+	result.setXMin(index);
+}
+
+void Extreme::findMin()
+{
+	if (_derivative.empty())
+	{
+		result.setMin(0);
+		result.setXMin(0);
+	}
+	int min = _derivative[0];
+	int index = _leftBorder;
+	for (int i = 0; i < _derivative.size(); i++)
+	{
+		if (min>_derivative[i])
+		{
+			index = i;
+			min = _derivative[i];
+		}
+	}
+	result.setMin(min);
+	result.setXMin(index);
+	
+}
+
+
+/*		//метод, який визначає значення елементу, де функція набуває мінімального значення
 int Extreme::indexOfMin()
 {
 	if (_derivative.empty())
@@ -152,3 +195,4 @@ double Extreme::valueOfMax()
 	}
 	return _derivative[index];
 }
+*/

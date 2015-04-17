@@ -241,10 +241,10 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 			// 
 			// tEps
 			// 
-			this->tEps->Location = System::Drawing::Point(322, 52);
+			this->tEps->Location = System::Drawing::Point(328, 52);
 			this->tEps->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->tEps->Name = L"tEps";
-			this->tEps->Size = System::Drawing::Size(126, 23);
+			this->tEps->Size = System::Drawing::Size(120, 23);
 			this->tEps->TabIndex = 4;
 			// 
 			// lEps
@@ -275,10 +275,10 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 			// 
 			// tRightBorder
 			// 
-			this->tRightBorder->Location = System::Drawing::Point(192, 52);
+			this->tRightBorder->Location = System::Drawing::Point(199, 52);
 			this->tRightBorder->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->tRightBorder->Name = L"tRightBorder";
-			this->tRightBorder->Size = System::Drawing::Size(85, 23);
+			this->tRightBorder->Size = System::Drawing::Size(78, 23);
 			this->tRightBorder->TabIndex = 8;
 			// 
 			// lLeftBorder
@@ -791,64 +791,102 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 #pragma endregion
 	private: System::Void bResult_Click(System::Object^  sender, System::EventArgs^  e)
 	{
+		
 
-				  GoldenSection goldenSection;
-
-				//  try
-				// {
-				  goldenSection.setFunction(MyConvert::toString(tFunction->Text));
-				// }
-				//  catch (MyExceptions excep)
-				// {
-
-				// }
-				  goldenSection.setEps(MyConvert::toDouble(tEps->Text));
-
-				  goldenSection.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
-				  goldenSection.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
-
-				  if (rbMax->Checked)
-				  {
-					
-					  goldenSection.findMax();
-					  double tmp = goldenSection.goldenResult.getXMax();
-					  lGoldenResult->Text += "F(" + (tmp * 10 / 10.0).ToString() + ") = ";
-					  tmp = goldenSection.goldenResult.getMax();
-					  lGoldenResult->Text += (tmp * 10 / 10.0).ToString();
+		GoldenSection goldenSection;
+		Extreme extreme;
 
 
-				  }
-				  else
-				  {
-					  goldenSection.findMin();
-					  double tmp = goldenSection.goldenResult.getXMin();
-					  lGoldenResult->Text = "F(" + (tmp * 10 / 10.0).ToString() + ") = ";
-					  tmp = goldenSection.goldenResult.getMin();
-					  lGoldenResult->Text += (tmp * 10 / 10.0).ToString();
+		if (tLeftBorder->Text == "" || tRightBorder->Text == "" || tEps->Text == "" || tFunction->Text == "")
+		{
+			MessageBox::Show("Error: empty fields");
+		}
+		else
+		if (!excep.isValidBrackets(MyConvert::toString(tFunction->Text)))
+		{
+			MessageBox::Show("Error:not valid brackets");
+		}
+		else 
+		if (!excep.isCorrectBorders(MyConvert::toDouble(tLeftBorder->Text), MyConvert::toDouble(tRightBorder->Text)))
+		{
+			MessageBox::Show("Error:left border is less than right border");
+		}
+		else
+		if (isalpha(MyConvert::toDouble(tLeftBorder->Text)) || isalpha(MyConvert::toDouble(tRightBorder->Text)) || isalpha(MyConvert::toDouble(tEps->Text)))
+		{
+			MessageBox::Show("Error:left border, right border or eps fields can't contain letters");
+		}
+		else
+		if (tLeftBorder->Text != "0..9" || tLeftBorder->Text != "," || tLeftBorder->Text != "-")
+		{ 
+			MessageBox::Show("Error:left border can't contain some symbols");
+		}
+		else
+		{
+			goldenSection.setFunction(MyConvert::toString(tFunction->Text));
+
+			extreme.setFunction(MyConvert::toString(tFunction->Text));
 
 
-				  }
-				  
-				  
+			goldenSection.setEps(MyConvert::toDouble(tEps->Text));
 
-				
-				  Extreme extreme;
-				  extreme.setEps(MyConvert::toDouble(tEps->Text));
-				  extreme.setFunction(MyConvert::toString(tFunction->Text));
-				  extreme.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
-				  extreme.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
-				  extreme.findExtremes();
-				  double tmp1 = extreme.valueOfMin();
-				  //lResult1->Text = "Derivative Search:Min:" + (round(tmp1 * 10000000) / 10000000.0).ToString() + "\n";
-				 // tmp1 = extreme.valueOfMax();
-				 // lResult1->Text += "Derivative Search:Max:" + (round(tmp1 * 10000000) / 10000000.0).ToString() + "\n";
-				/* MathParser  tmp;
-				 tmp.setVariable("x", 2);
-				 double a = tmp.Parse("x^(-2)");*/
+			extreme.setEps(MyConvert::toDouble(tEps->Text));
+
+			goldenSection.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
+			goldenSection.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
+
+			extreme.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
+			extreme.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
+
+			if (rbMax->Checked)
+			{
+				try
+				{
+
+
+					goldenSection.findMax();
+					double tmp = goldenSection.result.getXMax();
+					lGoldenResult->Text += "F(" + (tmp * 10 / 10.0).ToString() + ") = ";
+					tmp = goldenSection.result.getMax();
+					lGoldenResult->Text += (tmp * 10 / 10.0).ToString();
+
+					extreme.findExtremes();
+					tmp = extreme.result.getXMax();
+					lDerivativeResult->Text += "F(" + (tmp * 10 / 10.0).ToString() + ") = ";
+					tmp = extreme.result.getMax();
+					lDerivativeResult->Text += (tmp * 10 / 10.0).ToString();
+				}
+				catch (...)
+				{
+					MessageBox::Show("Error:unexpected error occured");
+				}
+
+			}
+			else
+			{
+				try
+				{
+					goldenSection.findMin();
+					double tmp = goldenSection.result.getXMin();
+					lGoldenResult->Text = "F(" + (tmp * 10 / 10.0).ToString() + ") = ";
+					tmp = goldenSection.result.getMin();
+					lGoldenResult->Text += (tmp * 10 / 10.0).ToString();
+
+					extreme.findExtremes();
+					tmp = extreme.result.getXMin();
+					lDerivativeResult->Text += "F(" + (tmp * 10 / 10.0).ToString() + ") = ";
+					tmp = extreme.result.getMin();
+					lDerivativeResult->Text += (tmp * 10 / 10.0).ToString();
+				}
+				catch (...)
+				{
+					MessageBox::Show("Error:unexpected error occured");
+				}
+			}
+		}
+	  
 	}
 				 
-				 
-
 
 	private: System::Void bOne_Click(System::Object^  sender, System::EventArgs^  e) 
 	{
@@ -975,6 +1013,7 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 	{
 		rbMax->Checked = false;
 	}
+
 };
 
 };
