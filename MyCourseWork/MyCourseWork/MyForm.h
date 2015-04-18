@@ -48,7 +48,7 @@ namespace MyCourseWork {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^  bResult;
+
 	private: System::Windows::Forms::TextBox^  tFunction;
 	protected:
 
@@ -60,7 +60,7 @@ namespace MyCourseWork {
 
 
 	private: System::Windows::Forms::Label^  lEps;
-	private: System::Windows::Forms::Label^  lGoldenSection;
+
 
 
 	private: System::Windows::Forms::TextBox^  tLeftBorder;
@@ -77,7 +77,7 @@ namespace MyCourseWork {
 	private: System::Windows::Forms::Button^  bMinus;
 
 	private: System::Windows::Forms::Button^  bPlus;
-	private: System::Windows::Forms::Label^  lDerivative;
+
 
 
 	private: System::Windows::Forms::Button^  bDiv;
@@ -130,13 +130,20 @@ namespace MyCourseWork {
 	private: System::Windows::Forms::Button^  bXVariable;
 private: System::Windows::Forms::Panel^  panel1;
 private: System::Windows::Forms::Panel^  panel2;
-private: System::Windows::Forms::Panel^  panel3;
-private: System::Windows::Forms::RadioButton^  rbMax;
 private: System::Windows::Forms::RadioButton^  rbMin;
-
-
-private: System::Windows::Forms::Label^  lGoldenResult;
+private: System::Windows::Forms::Label^  lDerivative;
+private: System::Windows::Forms::Button^  bResult;
+private: System::Windows::Forms::RadioButton^  rbMax;
+private: System::Windows::Forms::Label^  lGoldenSection;
 private: System::Windows::Forms::Label^  lDerivativeResult;
+private: System::Windows::Forms::Label^  lGoldenResult;
+
+
+
+
+
+
+
 
 
 
@@ -160,12 +167,11 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->bResult = (gcnew System::Windows::Forms::Button());
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->tFunction = (gcnew System::Windows::Forms::TextBox());
 			this->lFunction = (gcnew System::Windows::Forms::Label());
 			this->tEps = (gcnew System::Windows::Forms::TextBox());
 			this->lEps = (gcnew System::Windows::Forms::Label());
-			this->lGoldenSection = (gcnew System::Windows::Forms::Label());
 			this->tLeftBorder = (gcnew System::Windows::Forms::TextBox());
 			this->tRightBorder = (gcnew System::Windows::Forms::TextBox());
 			this->lLeftBorder = (gcnew System::Windows::Forms::Label());
@@ -173,7 +179,6 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 			this->bMul = (gcnew System::Windows::Forms::Button());
 			this->bMinus = (gcnew System::Windows::Forms::Button());
 			this->bPlus = (gcnew System::Windows::Forms::Button());
-			this->lDerivative = (gcnew System::Windows::Forms::Label());
 			this->bDiv = (gcnew System::Windows::Forms::Button());
 			this->bTan = (gcnew System::Windows::Forms::Button());
 			this->bCtan = (gcnew System::Windows::Forms::Button());
@@ -200,26 +205,16 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 			this->bXVariable = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
-			this->panel3 = (gcnew System::Windows::Forms::Panel());
-			this->lGoldenResult = (gcnew System::Windows::Forms::Label());
-			this->lDerivativeResult = (gcnew System::Windows::Forms::Label());
-			this->rbMax = (gcnew System::Windows::Forms::RadioButton());
 			this->rbMin = (gcnew System::Windows::Forms::RadioButton());
+			this->lDerivative = (gcnew System::Windows::Forms::Label());
+			this->bResult = (gcnew System::Windows::Forms::Button());
+			this->rbMax = (gcnew System::Windows::Forms::RadioButton());
+			this->lGoldenSection = (gcnew System::Windows::Forms::Label());
+			this->lDerivativeResult = (gcnew System::Windows::Forms::Label());
+			this->lGoldenResult = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
-			this->panel3->SuspendLayout();
 			this->SuspendLayout();
-			// 
-			// bResult
-			// 
-			this->bResult->Location = System::Drawing::Point(35, 188);
-			this->bResult->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
-			this->bResult->Name = L"bResult";
-			this->bResult->Size = System::Drawing::Size(177, 32);
-			this->bResult->TabIndex = 0;
-			this->bResult->Text = L"Result";
-			this->bResult->UseVisualStyleBackColor = true;
-			this->bResult->Click += gcnew System::EventHandler(this, &MyForm::bResult_Click);
 			// 
 			// tFunction
 			// 
@@ -229,6 +224,7 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 			this->tFunction->Name = L"tFunction";
 			this->tFunction->Size = System::Drawing::Size(386, 23);
 			this->tFunction->TabIndex = 1;
+			this->tFunction->Text = L"-2+3*x";
 			// 
 			// lFunction
 			// 
@@ -246,6 +242,7 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 			this->tEps->Name = L"tEps";
 			this->tEps->Size = System::Drawing::Size(120, 23);
 			this->tEps->TabIndex = 4;
+			this->tEps->Text = L"0,001";
 			// 
 			// lEps
 			// 
@@ -256,15 +253,6 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 			this->lEps->TabIndex = 5;
 			this->lEps->Text = L"Eps:";
 			// 
-			// lGoldenSection
-			// 
-			this->lGoldenSection->AutoSize = true;
-			this->lGoldenSection->Location = System::Drawing::Point(12, 57);
-			this->lGoldenSection->Name = L"lGoldenSection";
-			this->lGoldenSection->Size = System::Drawing::Size(147, 18);
-			this->lGoldenSection->TabIndex = 6;
-			this->lGoldenSection->Text = L"Golden section method:";
-			// 
 			// tLeftBorder
 			// 
 			this->tLeftBorder->Location = System::Drawing::Point(62, 53);
@@ -272,6 +260,7 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 			this->tLeftBorder->Name = L"tLeftBorder";
 			this->tLeftBorder->Size = System::Drawing::Size(85, 23);
 			this->tLeftBorder->TabIndex = 7;
+			this->tLeftBorder->Text = L"-10";
 			// 
 			// tRightBorder
 			// 
@@ -280,6 +269,7 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 			this->tRightBorder->Name = L"tRightBorder";
 			this->tRightBorder->Size = System::Drawing::Size(78, 23);
 			this->tRightBorder->TabIndex = 8;
+			this->tRightBorder->Text = L"10";
 			// 
 			// lLeftBorder
 			// 
@@ -337,15 +327,6 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 			this->bPlus->Text = L"+";
 			this->bPlus->UseVisualStyleBackColor = true;
 			this->bPlus->Click += gcnew System::EventHandler(this, &MyForm::bPlus_Click);
-			// 
-			// lDerivative
-			// 
-			this->lDerivative->AutoSize = true;
-			this->lDerivative->Location = System::Drawing::Point(12, 115);
-			this->lDerivative->Name = L"lDerivative";
-			this->lDerivative->Size = System::Drawing::Size(122, 18);
-			this->lDerivative->TabIndex = 14;
-			this->lDerivative->Text = L"Derivative method:";
 			// 
 			// bDiv
 			// 
@@ -661,6 +642,7 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 			// 
 			// panel1
 			// 
+			this->panel1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel1.BackgroundImage")));
 			this->panel1->Controls->Add(this->bDiv);
 			this->panel1->Controls->Add(this->bClear);
 			this->panel1->Controls->Add(this->bXVariable);
@@ -701,41 +683,43 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 			this->panel2->Size = System::Drawing::Size(181, 173);
 			this->panel2->TabIndex = 40;
 			// 
-			// panel3
+			// rbMin
 			// 
-			this->panel3->Controls->Add(this->lGoldenResult);
-			this->panel3->Controls->Add(this->lDerivativeResult);
-			this->panel3->Controls->Add(this->lGoldenSection);
-			this->panel3->Controls->Add(this->rbMax);
-			this->panel3->Controls->Add(this->bResult);
-			this->panel3->Controls->Add(this->lDerivative);
-			this->panel3->Controls->Add(this->rbMin);
-			this->panel3->Location = System::Drawing::Point(487, 26);
-			this->panel3->Name = L"panel3";
-			this->panel3->Size = System::Drawing::Size(255, 230);
-			this->panel3->TabIndex = 41;
+			this->rbMin->AutoSize = true;
+			this->rbMin->Location = System::Drawing::Point(641, 16);
+			this->rbMin->Name = L"rbMin";
+			this->rbMin->Size = System::Drawing::Size(109, 22);
+			this->rbMin->TabIndex = 43;
+			this->rbMin->Text = L"Find Minimum";
+			this->rbMin->UseVisualStyleBackColor = true;
+			this->rbMin->CheckedChanged += gcnew System::EventHandler(this, &MyForm::rbMin_CheckedChanged);
 			// 
-			// lGoldenResult
+			// lDerivative
 			// 
-			this->lGoldenResult->AutoSize = true;
-			this->lGoldenResult->Location = System::Drawing::Point(12, 82);
-			this->lGoldenResult->Name = L"lGoldenResult";
-			this->lGoldenResult->Size = System::Drawing::Size(0, 18);
-			this->lGoldenResult->TabIndex = 45;
+			this->lDerivative->AutoSize = true;
+			this->lDerivative->Location = System::Drawing::Point(496, 148);
+			this->lDerivative->Name = L"lDerivative";
+			this->lDerivative->Size = System::Drawing::Size(122, 18);
+			this->lDerivative->TabIndex = 14;
+			this->lDerivative->Text = L"Derivative method:";
 			// 
-			// lDerivativeResult
+			// bResult
 			// 
-			this->lDerivativeResult->AutoSize = true;
-			this->lDerivativeResult->Location = System::Drawing::Point(12, 148);
-			this->lDerivativeResult->Name = L"lDerivativeResult";
-			this->lDerivativeResult->Size = System::Drawing::Size(0, 18);
-			this->lDerivativeResult->TabIndex = 44;
+			this->bResult->Location = System::Drawing::Point(499, 214);
+			this->bResult->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+			this->bResult->Name = L"bResult";
+			this->bResult->Size = System::Drawing::Size(251, 32);
+			this->bResult->TabIndex = 0;
+			this->bResult->Text = L"Result";
+			this->bResult->UseVisualStyleBackColor = true;
+			this->bResult->Click += gcnew System::EventHandler(this, &MyForm::bResult_Click);
 			// 
 			// rbMax
 			// 
 			this->rbMax->AutoSize = true;
+			this->rbMax->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"rbMax.BackgroundImage")));
 			this->rbMax->Checked = true;
-			this->rbMax->Location = System::Drawing::Point(15, 15);
+			this->rbMax->Location = System::Drawing::Point(491, 16);
 			this->rbMax->Name = L"rbMax";
 			this->rbMax->Size = System::Drawing::Size(112, 22);
 			this->rbMax->TabIndex = 42;
@@ -744,27 +728,49 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 			this->rbMax->UseVisualStyleBackColor = true;
 			this->rbMax->CheckedChanged += gcnew System::EventHandler(this, &MyForm::rbMax_CheckedChanged);
 			// 
-			// rbMin
+			// lGoldenSection
 			// 
-			this->rbMin->AutoSize = true;
-			this->rbMin->Location = System::Drawing::Point(140, 15);
-			this->rbMin->Name = L"rbMin";
-			this->rbMin->Size = System::Drawing::Size(109, 22);
-			this->rbMin->TabIndex = 43;
-			this->rbMin->Text = L"Find Minimum";
-			this->rbMin->UseVisualStyleBackColor = true;
-			this->rbMin->CheckedChanged += gcnew System::EventHandler(this, &MyForm::rbMin_CheckedChanged);
+			this->lGoldenSection->AutoSize = true;
+			this->lGoldenSection->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"lGoldenSection.Image")));
+			this->lGoldenSection->Location = System::Drawing::Point(496, 83);
+			this->lGoldenSection->Name = L"lGoldenSection";
+			this->lGoldenSection->Size = System::Drawing::Size(147, 18);
+			this->lGoldenSection->TabIndex = 6;
+			this->lGoldenSection->Text = L"Golden section method:";
+			// 
+			// lDerivativeResult
+			// 
+			this->lDerivativeResult->AutoSize = true;
+			this->lDerivativeResult->Location = System::Drawing::Point(496, 174);
+			this->lDerivativeResult->Name = L"lDerivativeResult";
+			this->lDerivativeResult->Size = System::Drawing::Size(0, 18);
+			this->lDerivativeResult->TabIndex = 44;
+			// 
+			// lGoldenResult
+			// 
+			this->lGoldenResult->AutoSize = true;
+			this->lGoldenResult->Location = System::Drawing::Point(496, 108);
+			this->lGoldenResult->Name = L"lGoldenResult";
+			this->lGoldenResult->Size = System::Drawing::Size(0, 18);
+			this->lGoldenResult->TabIndex = 45;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 18);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::GradientInactiveCaption;
+			this->BackColor = System::Drawing::SystemColors::InactiveBorder;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(762, 282);
-			this->Controls->Add(this->panel3);
+			this->Controls->Add(this->lGoldenResult);
+			this->Controls->Add(this->lDerivativeResult);
 			this->Controls->Add(this->panel2);
+			this->Controls->Add(this->lDerivative);
+			this->Controls->Add(this->lGoldenSection);
+			this->Controls->Add(this->rbMin);
 			this->Controls->Add(this->panel1);
+			this->Controls->Add(this->bResult);
+			this->Controls->Add(this->rbMax);
 			this->Controls->Add(this->lRightBorder);
 			this->Controls->Add(this->lLeftBorder);
 			this->Controls->Add(this->tRightBorder);
@@ -773,16 +779,16 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 			this->Controls->Add(this->tEps);
 			this->Controls->Add(this->lFunction);
 			this->Controls->Add(this->tFunction);
+			this->DoubleBuffered = true;
 			this->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->Name = L"MyForm";
-			this->Text = L"MyForm";
+			this->Text = L"Calculator of searching maximum and minimum";
 			this->panel1->ResumeLayout(false);
 			this->panel2->ResumeLayout(false);
-			this->panel3->ResumeLayout(false);
-			this->panel3->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -811,16 +817,7 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 		{
 			MessageBox::Show("Error:left border is less than right border");
 		}
-		else
-		if (isalpha(MyConvert::toDouble(tLeftBorder->Text)) || isalpha(MyConvert::toDouble(tRightBorder->Text)) || isalpha(MyConvert::toDouble(tEps->Text)))
-		{
-			MessageBox::Show("Error:left border, right border or eps fields can't contain letters");
-		}
-		else
-		if (tLeftBorder->Text != "0..9" || tLeftBorder->Text != "," || tLeftBorder->Text != "-")
-		{ 
-			MessageBox::Show("Error:left border can't contain some symbols");
-		}
+		
 		else
 		{
 			goldenSection.setFunction(MyConvert::toString(tFunction->Text));
@@ -838,27 +835,46 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 			extreme.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
 			extreme.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
 
+			
+
 			if (rbMax->Checked)
 			{
 				try
 				{
 
-
 					goldenSection.findMax();
 					double tmp = goldenSection.result.getXMax();
-					lGoldenResult->Text += "F(" + (tmp * 10 / 10.0).ToString() + ") = ";
+					lGoldenResult->Text = "";
+					lGoldenResult->Text += "F(" + round(tmp * 100000 / 100000.00).ToString() + ") = ";
 					tmp = goldenSection.result.getMax();
-					lGoldenResult->Text += (tmp * 10 / 10.0).ToString();
+					lGoldenResult->Text += round(tmp * 100000 / 100000.00).ToString() + "\n";
 
+					bool foundExcep = false;
 					extreme.findExtremes();
-					tmp = extreme.result.getXMax();
-					lDerivativeResult->Text += "F(" + (tmp * 10 / 10.0).ToString() + ") = ";
-					tmp = extreme.result.getMax();
-					lDerivativeResult->Text += (tmp * 10 / 10.0).ToString();
+					try
+					{
+						extreme.findMax();
+					}
+					catch (...)
+					{
+						lDerivativeResult->Text = "Not found derivatives equal to zero";
+						foundExcep = true;
+						
+					}
+					if (!foundExcep)
+					{
+						tmp = extreme.result.getXMax();
+						lDerivativeResult->Text = "";
+						lDerivativeResult->Text += "F(" + (tmp * 1000000 / 1000000.00).ToString() + ") = ";
+						tmp = extreme.result.getMax();
+						lDerivativeResult->Text += (tmp * 1000000 / 1000000.00).ToString() + "\n";
+					}
+					
 				}
 				catch (...)
 				{
 					MessageBox::Show("Error:unexpected error occured");
+					
 				}
 
 			}
@@ -868,15 +884,30 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 				{
 					goldenSection.findMin();
 					double tmp = goldenSection.result.getXMin();
-					lGoldenResult->Text = "F(" + (tmp * 10 / 10.0).ToString() + ") = ";
+					lGoldenResult->Text = "";
+					lGoldenResult->Text = "F(" + (tmp * 1000000 / 1000000.0).ToString() + ") = ";
 					tmp = goldenSection.result.getMin();
-					lGoldenResult->Text += (tmp * 10 / 10.0).ToString();
+					lGoldenResult->Text += (tmp * 1000000 / 1000000.0).ToString();
 
+					bool foundExcep = false;
 					extreme.findExtremes();
-					tmp = extreme.result.getXMin();
-					lDerivativeResult->Text += "F(" + (tmp * 10 / 10.0).ToString() + ") = ";
-					tmp = extreme.result.getMin();
-					lDerivativeResult->Text += (tmp * 10 / 10.0).ToString();
+					try
+					{
+						extreme.findMin();
+					}
+					catch (...)
+					{
+						lDerivativeResult->Text = "Not found derivatives equal to zero";
+						foundExcep = true;
+					}
+					if (!foundExcep)
+					{
+						tmp = extreme.result.getXMin();
+						lDerivativeResult->Text = "";
+						lDerivativeResult->Text += "F(" + (tmp * 1000000 / 1000000.0).ToString() + ") = ";
+						tmp = extreme.result.getMin();
+						lDerivativeResult->Text += (tmp * 1000000 / 1000000.0).ToString();
+					}
 				}
 				catch (...)
 				{
@@ -1008,10 +1039,12 @@ private: System::Windows::Forms::Label^  lDerivativeResult;
 	private: System::Void rbMax_CheckedChanged(System::Object^  sender, System::EventArgs^  e) 
 	{
 		rbMin->Checked = false;
+		
 	}
 	private: System::Void rbMin_CheckedChanged(System::Object^  sender, System::EventArgs^  e) 
 	{
 		rbMax->Checked = false;
+		
 	}
 
 };

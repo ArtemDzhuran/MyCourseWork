@@ -27,6 +27,8 @@ public:
 
 			//Ділення на нуль
 	const char* divisionByZero();
+
+	const char* noZeroDerivative();
 	
 };
 

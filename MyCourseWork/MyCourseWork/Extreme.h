@@ -10,6 +10,7 @@ class Extreme
 {
 public:
 	MaxMinResult result;
+	MyExceptions excep;
 
 private:
 	string _function;

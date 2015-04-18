@@ -91,26 +91,30 @@ void Extreme::findMax()
 {
 	if (_derivative.empty())
 	{
-		result.setMin(0);
-		result.setXMin(0);
+		throw excep.noZeroDerivative();
+
 	}
+
 	int max = _derivative[0];
 	int index = _leftBorder;
 	for (int i = 0; i < _derivative.size(); i++)
 	{
-		if (max<_derivative[i]);
-		index = i;
+		if (max < _derivative[i])
+		{
+			index = i;
+			max = _derivative[i];
+		}
 	}
 	result.setMin(max);
 	result.setXMin(index);
+	
 }
 
 void Extreme::findMin()
 {
 	if (_derivative.empty())
 	{
-		result.setMin(0);
-		result.setXMin(0);
+		throw excep.noZeroDerivative();
 	}
 	int min = _derivative[0];
 	int index = _leftBorder;
@@ -124,6 +128,7 @@ void Extreme::findMin()
 	}
 	result.setMin(min);
 	result.setXMin(index);
+	
 	
 }
 

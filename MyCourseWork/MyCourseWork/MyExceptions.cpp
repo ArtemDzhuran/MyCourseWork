@@ -18,6 +18,8 @@ const char* MyExceptions::canNotGetValidNum()  { return "Can't get valid number"
 		//Перевірка правильного значення аргументу функції
 const char* MyExceptions::notValidArgument()  { return "Not valid argument"; }
 
+const char* MyExceptions::noZeroDerivative() { return "Not found derivatives equal to zero"; }
+
 		//Ділення на нуль
 const char* MyExceptions::divisionByZero() { return "Division by zero"; }
 
