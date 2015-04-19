@@ -224,7 +224,7 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->tFunction->Name = L"tFunction";
 			this->tFunction->Size = System::Drawing::Size(386, 23);
 			this->tFunction->TabIndex = 1;
-			this->tFunction->Text = L"-2+3*x";
+			this->tFunction->Text = L"-x^2+9";
 			// 
 			// lFunction
 			// 
@@ -797,8 +797,7 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 #pragma endregion
 	private: System::Void bResult_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		
-
+	 
 		GoldenSection goldenSection;
 		Extreme extreme;
 
@@ -817,23 +816,30 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 		{
 			MessageBox::Show("Error:left border is less than right border");
 		}
-		
+
 		else
 		{
 			goldenSection.setFunction(MyConvert::toString(tFunction->Text));
 
 			extreme.setFunction(MyConvert::toString(tFunction->Text));
 
+			try
+			{
 
-			goldenSection.setEps(MyConvert::toDouble(tEps->Text));
+				goldenSection.setEps(MyConvert::toDouble(tEps->Text));
 
-			extreme.setEps(MyConvert::toDouble(tEps->Text));
+				extreme.setEps(MyConvert::toDouble(tEps->Text));
 
-			goldenSection.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
-			goldenSection.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
+				goldenSection.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
+				goldenSection.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
 
-			extreme.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
-			extreme.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
+				extreme.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
+				extreme.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
+			}
+			catch (...)
+			{
+				MessageBox::Show("Error");
+			}
 
 			
 
@@ -916,6 +922,7 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			}
 		}
 	  
+
 	}
 				 
 

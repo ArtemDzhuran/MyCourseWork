@@ -16,9 +16,11 @@ class MathParser //Клас, який аналізує рядок і рахує його значення
 
 public:
 	MyExceptions e;
+	
 
 private:
 	map<string, double> variables;
+	bool negativeVariable = false;
 
 			//метод, який переводить у радіани 
 	double toRadians(double angle);

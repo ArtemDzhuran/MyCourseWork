@@ -16,6 +16,8 @@ double MyConvert::toDouble(System::String^ stringValue)
 	}
 	catch (System::FormatException ^e)
 	{
+	
+		//throw  new  MyExceptions();
 		return 0;
 	}
 	catch (...)
@@ -35,6 +37,7 @@ double MyConvert::toDouble(string stringValue)
 	}
 	catch (System::FormatException ^e)
 	{
+		//throw  new  MyExceptions();
 		return 0;
 	}
 	catch (...)

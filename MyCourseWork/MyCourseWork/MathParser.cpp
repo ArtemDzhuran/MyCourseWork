@@ -27,10 +27,13 @@ double MathParser::getVariable(string variableName)
 	{
 		return 0.0;
 	}
-
+	
 	map<string, double>::iterator it;
 	it = variables.find(variableName);
-
+	if (negativeVariable)
+	{
+		setVariable(variableName, (-1)*(*it).second);
+	}
 	return (*it).second;
 
 }
@@ -106,6 +109,13 @@ Result MathParser::FunctionVariable(string s)
 {
 	string f = "";
 	int i = 0;
+	if (s[0] == '-' && isalpha(s[1]))
+	{
+		negativeVariable = true;
+
+		s = s.substr(1, s.length());
+	}
+	
 		// пошук функції або змінної(ім*я обов*язково повинно починатись з букви
 	while ((unsigned)i <= s.length() && (isalpha(s[i])  /* || (isdigit(s[i])&& i >= 0)*/))
 	{
@@ -124,6 +134,7 @@ Result MathParser::FunctionVariable(string s)
 		else
 		{ // інакше - змінна
 			return  Result(getVariable(f), s.substr(i, s.length()));//erase=substr;was f.length
+
 		}
 	}
 	return Num(s);
@@ -171,11 +182,13 @@ Result MathParser::Num(string s)
 	int dot_cnt = 0;
 	bool negative = false;
 			 // число також може починатись з мінуса
-	if (s[0] == '-')
+	if (s[0] == '-' && isdigit(s[1]))
 	{
 		negative = true;
+		
 		s = s.substr(1, s.length());
 	}
+	
 			 // дозволяємо лише цифри та точку
 	while ((unsigned)i < s.length() && (isdigit(s[i]) || s[i] == '.'))
 	{
@@ -192,13 +205,20 @@ Result MathParser::Num(string s)
 	if (i == 0)
 	{ // якщо щось схоже на число ми не знайшли
 		throw e.canNotGetValidNum();
+		//negativeVariable = true;
+		//return FunctionVariable(s);
+	}
+	else
+	{
+		double dPart = atof(s.substr(0, i).c_str());
+		if (negative) dPart = -dPart;
+		string restPart = s.substr(i, s.length());
+		return  Result(dPart, restPart);
 	}
 
-	double dPart = atof(s.substr(0, i).c_str());
-	if (negative) dPart = -dPart;
-	string restPart = s.substr(i, s.length());
+	
 
-	return  Result(dPart, restPart);
+	
 }
 
 		 // Визначення всіх функцій які ми можемо використовувати 

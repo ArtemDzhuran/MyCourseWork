@@ -1,6 +1,7 @@
 #pragma once
 #include <msclr\marshal_cppstd.h>
 #include <string>
+#include "MyExceptions.h"
 
 using namespace System::Runtime::InteropServices;
 using namespace std;
@@ -9,6 +10,7 @@ class MyConvert //Клас, який включає в себе користувацькі переведення типів
 {
 public:
 
+	MyExceptions excep;
 			//Конструктор без параметрів
 	MyConvert();
 
