@@ -1,7 +1,7 @@
 #include "GoldenSection.h"
 
 
-
+		//конструктор без параметрів
 GoldenSection::GoldenSection()
 {
 	_function = "";
@@ -10,12 +10,13 @@ GoldenSection::GoldenSection()
 	_rightBorder = 1;
 }
 
-
+		//конструктор з параметром
 GoldenSection::GoldenSection(string function)
 {
 	_function = function;
 }
 
+		//метод, який змінює коми на крапки
 void GoldenSection::changeComasWithDots(string& str)
 {
 	for (int i = 0; i < str.length(); i++)
@@ -27,38 +28,43 @@ void GoldenSection::changeComasWithDots(string& str)
 	}
 }
 
-
-
+		//встановлюємо значення точності
 void GoldenSection::setEps(double eps)
 {
 	_eps = eps;
 }
 
+		// встановлюємо значення лівої межі
 void GoldenSection::setLeftBorder(double leftBorder)
 {
 	_leftBorder = leftBorder;
 }
 
+		//встановлюємо значення правої межі
 void GoldenSection::setRightBorder(double rightBorder)
 {
 	_rightBorder = rightBorder;
 }
 
+		//отримує значення точності
 double GoldenSection::getEps()
 {
 	return _eps;
 }
 
+		//отримуємо значення лівої межі
 double GoldenSection::getRightBorder()
 {
 	return _rightBorder;
 }
 
+		//отримуємо значення правої межі
 double GoldenSection::getLeftBorder()
 {
 	return _leftBorder;
 }
 
+		//встановлюємо значення функції
 void GoldenSection::setFunction(string function)
 {
 
@@ -67,11 +73,13 @@ void GoldenSection::setFunction(string function)
 	_function = function;
 }
 
+		//отримуємо значення функції
 string GoldenSection::getFunction()
 {
 	return _function;
 }
 
+		//пошук максимуму та мінімуму методом золотого січення
 void GoldenSection::find(bool isLess)
 {
 	mathParser.setVariable("x", _leftBorder);
@@ -133,11 +141,13 @@ void GoldenSection::find(bool isLess)
 
 }
 
+		//визначає максимум
 void GoldenSection::findMax()
 {
 	find(false);
 }
 
+		//визначає мінімум
 void GoldenSection::findMin()
 {
 	find(true);

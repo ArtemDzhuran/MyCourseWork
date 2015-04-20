@@ -6,9 +6,7 @@ MyExceptions::MyExceptions()
 
 }
 
-		//Перевірка того, що кількість дужок які закриваються і відкриваються однакова
-const char* MyExceptions::notValidBrackets() { return "Not valid brackets"; }
-
+		
 		//Перевірка чи в числі лише одна кома
 const char* MyExceptions::notValidNum() { return "Not valid number"; }
 
@@ -18,11 +16,13 @@ const char* MyExceptions::canNotGetValidNum()  { return "Can't get valid number"
 		//Перевірка правильного значення аргументу функції
 const char* MyExceptions::notValidArgument()  { return "Not valid argument"; }
 
+		//Перевірка того, що знайшли екстремуми
 const char* MyExceptions::noZeroDerivative() { return "Not found derivatives equal to zero"; }
 
 		//Ділення на нуль
 const char* MyExceptions::divisionByZero() { return "Division by zero"; }
-
+		
+		//Перевірка того, що кількість дужок які закриваються і відкриваються однакова
 bool MyExceptions::isValidBrackets(string s)
 {
 	int openBrackets = 0;
@@ -43,6 +43,7 @@ bool MyExceptions::isValidBrackets(string s)
 	return true;
 }
 
+		//Перевірка правильності вводу меж визначення функції
 bool MyExceptions::isCorrectBorders(double leftBorder, double rightBorder)
 {
 	return leftBorder < rightBorder;

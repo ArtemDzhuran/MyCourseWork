@@ -140,18 +140,6 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 	protected:
 
 	private:
@@ -224,7 +212,6 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->tFunction->Name = L"tFunction";
 			this->tFunction->Size = System::Drawing::Size(386, 23);
 			this->tFunction->TabIndex = 1;
-			this->tFunction->Text = L"-x^2+9";
 			// 
 			// lFunction
 			// 
@@ -242,7 +229,6 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->tEps->Name = L"tEps";
 			this->tEps->Size = System::Drawing::Size(120, 23);
 			this->tEps->TabIndex = 4;
-			this->tEps->Text = L"0,001";
 			// 
 			// lEps
 			// 
@@ -260,7 +246,6 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->tLeftBorder->Name = L"tLeftBorder";
 			this->tLeftBorder->Size = System::Drawing::Size(85, 23);
 			this->tLeftBorder->TabIndex = 7;
-			this->tLeftBorder->Text = L"-10";
 			// 
 			// tRightBorder
 			// 
@@ -269,7 +254,6 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->tRightBorder->Name = L"tRightBorder";
 			this->tRightBorder->Size = System::Drawing::Size(78, 23);
 			this->tRightBorder->TabIndex = 8;
-			this->tRightBorder->Text = L"10";
 			// 
 			// lLeftBorder
 			// 
@@ -688,9 +672,9 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->rbMin->AutoSize = true;
 			this->rbMin->Location = System::Drawing::Point(641, 16);
 			this->rbMin->Name = L"rbMin";
-			this->rbMin->Size = System::Drawing::Size(109, 22);
+			this->rbMin->Size = System::Drawing::Size(75, 22);
 			this->rbMin->TabIndex = 43;
-			this->rbMin->Text = L"Find Minimum";
+			this->rbMin->Text = L"Мінімум";
 			this->rbMin->UseVisualStyleBackColor = true;
 			this->rbMin->CheckedChanged += gcnew System::EventHandler(this, &MyForm::rbMin_CheckedChanged);
 			// 
@@ -699,9 +683,9 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->lDerivative->AutoSize = true;
 			this->lDerivative->Location = System::Drawing::Point(496, 148);
 			this->lDerivative->Name = L"lDerivative";
-			this->lDerivative->Size = System::Drawing::Size(122, 18);
+			this->lDerivative->Size = System::Drawing::Size(186, 18);
 			this->lDerivative->TabIndex = 14;
-			this->lDerivative->Text = L"Derivative method:";
+			this->lDerivative->Text = L"Метод пошуку через похідну:";
 			// 
 			// bResult
 			// 
@@ -710,7 +694,7 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->bResult->Name = L"bResult";
 			this->bResult->Size = System::Drawing::Size(251, 32);
 			this->bResult->TabIndex = 0;
-			this->bResult->Text = L"Result";
+			this->bResult->Text = L"Результат";
 			this->bResult->UseVisualStyleBackColor = true;
 			this->bResult->Click += gcnew System::EventHandler(this, &MyForm::bResult_Click);
 			// 
@@ -721,10 +705,10 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->rbMax->Checked = true;
 			this->rbMax->Location = System::Drawing::Point(491, 16);
 			this->rbMax->Name = L"rbMax";
-			this->rbMax->Size = System::Drawing::Size(112, 22);
+			this->rbMax->Size = System::Drawing::Size(87, 22);
 			this->rbMax->TabIndex = 42;
 			this->rbMax->TabStop = true;
-			this->rbMax->Text = L"Find Maximum";
+			this->rbMax->Text = L"Максимум";
 			this->rbMax->UseVisualStyleBackColor = true;
 			this->rbMax->CheckedChanged += gcnew System::EventHandler(this, &MyForm::rbMax_CheckedChanged);
 			// 
@@ -734,9 +718,9 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->lGoldenSection->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"lGoldenSection.Image")));
 			this->lGoldenSection->Location = System::Drawing::Point(496, 83);
 			this->lGoldenSection->Name = L"lGoldenSection";
-			this->lGoldenSection->Size = System::Drawing::Size(147, 18);
+			this->lGoldenSection->Size = System::Drawing::Size(157, 18);
 			this->lGoldenSection->TabIndex = 6;
-			this->lGoldenSection->Text = L"Golden section method:";
+			this->lGoldenSection->Text = L"Метод золотого січення:";
 			// 
 			// lDerivativeResult
 			// 
@@ -782,11 +766,11 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->DoubleBuffered = true;
 			this->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->Name = L"MyForm";
-			this->Text = L"Calculator of searching maximum and minimum";
+			this->Text = L"Пошук максимуму та мінімуму функцій";
 			this->panel1->ResumeLayout(false);
 			this->panel2->ResumeLayout(false);
 			this->ResumeLayout(false);
@@ -798,33 +782,52 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 	private: System::Void bResult_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 	 
-		GoldenSection goldenSection;
+				 //створення екземпляру класу золотого січення та аналізу екстремумів
+		GoldenSection goldenSection; 
 		Extreme extreme;
+				//змінна, яка відповідає за перевірку правильного вводу в поля
+		bool convertError = false;
 
+		//перевірка чи в полях меж та точності лише числа
+		try
+		{
+			double a = double::Parse(tLeftBorder->Text);
+			a = double::Parse(tRightBorder->Text);
+			a = double::Parse(tEps->Text);
+		}
+		catch (System::FormatException^ e)
+		{
+			MessageBox::Show("Помилка! Неправильно введені числа!");
+			convertError = true;
+		}
 
+		if (convertError){}
+		else
+				//Перевірка полів на заповненість
 		if (tLeftBorder->Text == "" || tRightBorder->Text == "" || tEps->Text == "" || tFunction->Text == "")
 		{
-			MessageBox::Show("Error: empty fields");
+			MessageBox::Show("Помилка! Поля не можуть бути порожніми! ");
 		}
 		else
+				//Перевірка того, що кількість дужок співпадає
 		if (!excep.isValidBrackets(MyConvert::toString(tFunction->Text)))
 		{
-			MessageBox::Show("Error:not valid brackets");
+			MessageBox::Show("Помилка! Кількість відкриваючих і закриваючих дужок не співдає! ");
 		}
 		else 
+				//Перевірка того, що ліва межа менше за праву межу
 		if (!excep.isCorrectBorders(MyConvert::toDouble(tLeftBorder->Text), MyConvert::toDouble(tRightBorder->Text)))
 		{
-			MessageBox::Show("Error:left border is less than right border");
+			MessageBox::Show("Помилка! Ліва межа не може бути більше за праву межу! ");
 		}
 
+				//Виконання основного коду
 		else
 		{
+				//Отримання значень з полів 
 			goldenSection.setFunction(MyConvert::toString(tFunction->Text));
 
 			extreme.setFunction(MyConvert::toString(tFunction->Text));
-
-			try
-			{
 
 				goldenSection.setEps(MyConvert::toDouble(tEps->Text));
 
@@ -835,14 +838,9 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 
 				extreme.setLeftBorder(MyConvert::toDouble(tLeftBorder->Text));
 				extreme.setRightBorder(MyConvert::toDouble(tRightBorder->Text));
-			}
-			catch (...)
-			{
-				MessageBox::Show("Error");
-			}
 
 			
-
+					//Пошук максимуму
 			if (rbMax->Checked)
 			{
 				try
@@ -863,7 +861,7 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 					}
 					catch (...)
 					{
-						lDerivativeResult->Text = "Not found derivatives equal to zero";
+						lDerivativeResult->Text = "Не знайдено екстремумів функції";
 						foundExcep = true;
 						
 					}
@@ -879,11 +877,12 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 				}
 				catch (...)
 				{
-					MessageBox::Show("Error:unexpected error occured");
+					MessageBox::Show("Помилка! Знайдено неочікувану помилку!");
 					
 				}
 
 			}
+					//пошук мінімуму
 			else
 			{
 				try
@@ -903,7 +902,7 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 					}
 					catch (...)
 					{
-						lDerivativeResult->Text = "Not found derivatives equal to zero";
+						lDerivativeResult->Text = "Не знайдено екстремумів функції";
 						foundExcep = true;
 					}
 					if (!foundExcep)
@@ -917,7 +916,7 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 				}
 				catch (...)
 				{
-					MessageBox::Show("Error:unexpected error occured");
+					MessageBox::Show("Помилка! Знайдено неочікувану помилку!");
 				}
 			}
 		}

@@ -10,10 +10,9 @@ public:
 	MyExceptions();
 
 			//Перевірка того, що кількість дужок які закриваються і відкриваються однакова
-	const char* notValidBrackets(); 
-
 	bool isValidBrackets(string s);
 
+			//Перевірка правильності вводу меж визначення функції
 	bool isCorrectBorders(double leftBorder, double rightBorder);
 
 			//Перевірка чи в числі лише одна кома
@@ -28,6 +27,7 @@ public:
 			//Ділення на нуль
 	const char* divisionByZero();
 
+			//Перевірка того, що знайшли екстремуми
 	const char* noZeroDerivative();
 	
 };

@@ -1,8 +1,5 @@
 #include "Extreme.h"
 
-
-
-
 		//конструктор без параметрів
 Extreme::Extreme()
 {
@@ -12,9 +9,22 @@ Extreme::Extreme()
 	_function = "";
 }
 
+		//метод, який змінює коми на крапки
+void Extreme::changeComasWithDots(string& str)
+{
+	for (int i = 0; i < str.length(); i++)
+	{
+		if (str[i] == ',')
+		{
+			str[i] = '.';
+		}
+	}
+}
+
 		//встановлює значення функції
 void Extreme::setFunction(string function)
 {
+	changeComasWithDots(function);
 	_function = function;
 }
 		
@@ -77,7 +87,7 @@ void Extreme::findExtremes()
 	for (double i = _leftBorder; i < _rightBorder; i += _eps)
 	{
 		tmp = findDerivative(i);
-		if (fabs(tmp) < _eps * 10)
+		if (fabs(tmp) <= _eps*100 )
 		{
 			mathParser.setVariable("x", i);
 			_derivative.push_back(mathParser.Parse(_function));
@@ -86,7 +96,7 @@ void Extreme::findExtremes()
 
 	}
 }
-
+		// метод, який визначає значення елементу, де функція набуває максимального значення
 void Extreme::findMax()
 {
 	if (_derivative.empty())
@@ -96,20 +106,21 @@ void Extreme::findMax()
 	}
 
 	int max = _derivative[0];
-	int index = _leftBorder;
+	int index = _points[0];
 	for (int i = 0; i < _derivative.size(); i++)
 	{
 		if (max < _derivative[i])
 		{
-			index = i;
+			index = _points[i];
 			max = _derivative[i];
 		}
 	}
-	result.setMin(max);
-	result.setXMin(index);
+	result.setMax(max);
+	result.setXMax(index);
 	
 }
 
+		//метод, який визначає значення елементу, де функція набуває мінімального значення
 void Extreme::findMin()
 {
 	if (_derivative.empty())
@@ -117,12 +128,12 @@ void Extreme::findMin()
 		throw excep.noZeroDerivative();
 	}
 	int min = _derivative[0];
-	int index = _leftBorder;
+	int index = _points[0];
 	for (int i = 0; i < _derivative.size(); i++)
 	{
 		if (min>_derivative[i])
 		{
-			index = i;
+			index = _points[i];
 			min = _derivative[i];
 		}
 	}
@@ -133,71 +144,3 @@ void Extreme::findMin()
 }
 
 
-/*		//метод, який визначає значення елементу, де функція набуває мінімального значення
-int Extreme::indexOfMin()
-{
-	if (_derivative.empty())
-	{
-		return 0;
-	}
-	int min = _derivative[0];
-	int index = 0;
-	for (int i = 0; i < _derivative.size(); i++)
-	{
-		if (min>_derivative[i]);
-		index = i;
-	}
-	return index;
-}
-
-		//метод, який визначає значення елементу, де функція набуває максимального значення
-int Extreme::indexOfMax()
-{
-	if (_derivative.empty())
-	{
-		return 0;
-	}
-	int max = _derivative[0];
-	int index = 0;
-	for (int i = 0; i < _derivative.size(); i++)
-	{
-		if (max<_derivative[i]);
-		index = i;
-	}
-	return index;
-}
-
-		//метод, який визначає мінімум функції
-double Extreme::valueOfMin()
-{
-	if (_derivative.empty())
-	{
-		return 0;
-	}
-	int min = _derivative[0];
-	int index = 0;
-	for (int i = 0; i < _derivative.size(); i++)
-	{
-		if (min>_derivative[i]);
-		index = i;
-	}
-	return _derivative[index];
-}
-
-		//метод, який визначає максимум функції
-double Extreme::valueOfMax()
-{
-	if (_derivative.empty())
-	{
-		return 0;
-	}
-	int max = _derivative[0];
-	int index = 0;
-	for (int i = 0; i < _derivative.size(); i++)
-	{
-		if (max<_derivative[i]);
-		index = i;
-	}
-	return _derivative[index];
-}
-*/
