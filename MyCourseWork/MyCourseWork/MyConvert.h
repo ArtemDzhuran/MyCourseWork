@@ -26,8 +26,5 @@ public:
 			//Перевід з System::String в Std::String
 	static string toString(System::String^ value);
 
-	
-
-
 };
 

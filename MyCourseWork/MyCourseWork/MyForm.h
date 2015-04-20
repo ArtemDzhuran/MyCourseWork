@@ -766,7 +766,7 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->DoubleBuffered = true;
 			this->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->Name = L"MyForm";
@@ -1039,6 +1039,8 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 	private: System::Void bClear_Click(System::Object^  sender, System::EventArgs^  e) 
 	{
 				 tFunction->Text = "";
+				 lDerivativeResult->Text = "";
+				 lGoldenResult->Text = "";
 	}
 
 
