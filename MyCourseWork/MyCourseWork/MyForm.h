@@ -781,7 +781,7 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 #pragma endregion
 	private: System::Void bResult_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-	 
+				 
 				 //створення екземпляру класу золотого січення та аналізу екстремумів
 		GoldenSection goldenSection; 
 		Extreme extreme;
@@ -869,9 +869,9 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 					{
 						tmp = extreme.result.getXMax();
 						lDerivativeResult->Text = "";
-						lDerivativeResult->Text += "F(" + (tmp * 1000000 / 1000000.00).ToString() + ") = ";
+						lDerivativeResult->Text += "F(" + round(tmp * 1000000 / 1000000.00).ToString() + ") = ";
 						tmp = extreme.result.getMax();
-						lDerivativeResult->Text += (tmp * 1000000 / 1000000.00).ToString() + "\n";
+						lDerivativeResult->Text += round(tmp * 1000000 / 1000000.00).ToString() + "\n";
 					}
 					
 				}
@@ -920,7 +920,6 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 				}
 			}
 		}
-	  
 
 	}
 				 

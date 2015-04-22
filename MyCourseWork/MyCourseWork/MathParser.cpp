@@ -50,7 +50,7 @@ double MathParser::Parse(string s)
 	return result.acc;
 }
 
-		//пошуку плюсу мінусу або степеня та обчислення
+		//пошуку плюсу мінусу та обчислення
 Result MathParser::PlusMinus(string s)
 {
 	Result current = MulDiv(s);
@@ -58,7 +58,7 @@ Result MathParser::PlusMinus(string s)
 
 	while (current.rest.length() > 0) 
 	{
-		if (!(current.rest[0] == '+' || current.rest[0] == '-' ||current.rest[0] == '^')) break;
+		if (!(current.rest[0] == '+' || current.rest[0] == '-' )) break;
 
 		char sign = current.rest[0];
 		string next = current.rest.substr(1, s.length());
@@ -68,11 +68,11 @@ Result MathParser::PlusMinus(string s)
 		{
 			acc += current.acc;
 		}
-		else if (sign == '^')
+		/*else if (sign == '^')
 		{
-			acc = pow(acc, current.acc);
+			
 					 
-		}
+		}*/
 		else 
 		{
 			acc -= current.acc;
@@ -140,7 +140,7 @@ Result MathParser::FunctionVariable(string s)
 	return Num(s);
 }
 
-		 //множення ділення та обчислення результату
+		 //множення, ділення або пошук степеня та обчислення результату
 Result MathParser::MulDiv(string s)
 {
 	Result current = Bracket(s);
@@ -153,7 +153,7 @@ Result MathParser::MulDiv(string s)
 			return current;
 		}
 		char sign = current.rest[0];
-		if ((sign != '*' && sign != '/')) return current;
+		if ((sign != '*' && sign != '/' &&sign != '^')) return current;
 
 		string next = current.rest.substr(1, s.length());
 		Result right = Bracket(next);
@@ -163,12 +163,18 @@ Result MathParser::MulDiv(string s)
 			acc *= right.acc;
 		}
 		else
+		if (sign == '/')
 		{
 			if (right.acc == 0)
 			{
 				throw e.divisionByZero();
 			}
 			acc /= right.acc;
+		}
+		else
+		if (sign == '^')
+		{
+			acc = pow(acc, right.acc);
 		}
 
 		current = Result(acc, right.rest);
