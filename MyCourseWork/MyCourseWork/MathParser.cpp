@@ -68,11 +68,6 @@ Result MathParser::PlusMinus(string s)
 		{
 			acc += current.acc;
 		}
-		/*else if (sign == '^')
-		{
-			
-					 
-		}*/
 		else 
 		{
 			acc -= current.acc;
@@ -194,7 +189,6 @@ Result MathParser::Num(string s)
 		
 		s = s.substr(1, s.length());
 	}
-	
 			 // дозволяємо лише цифри та точку
 	while ((unsigned)i < s.length() && (isdigit(s[i]) || s[i] == '.'))
 	{
@@ -202,17 +196,13 @@ Result MathParser::Num(string s)
 		if (s[i] == '.' && ++dot_cnt > 1)
 		{
 			throw e.notValidNum();
-			
 		}
 
 		i++;
 	}
-
 	if (i == 0)
 	{ // якщо щось схоже на число ми не знайшли
 		throw e.canNotGetValidNum();
-		//negativeVariable = true;
-		//return FunctionVariable(s);
 	}
 	else
 	{
@@ -221,10 +211,6 @@ Result MathParser::Num(string s)
 		string restPart = s.substr(i, s.length());
 		return  Result(dPart, restPart);
 	}
-
-	
-
-	
 }
 
 		 // Визначення всіх функцій які ми можемо використовувати 

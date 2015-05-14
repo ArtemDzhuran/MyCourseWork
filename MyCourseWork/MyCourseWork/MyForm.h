@@ -138,6 +138,8 @@ private: System::Windows::Forms::Label^  lGoldenSection;
 private: System::Windows::Forms::Label^  lDerivativeResult;
 private: System::Windows::Forms::Label^  lGoldenResult;
 
+private: System::Windows::Forms::GroupBox^  groupBox2;
+
 
 
 	protected:
@@ -200,8 +202,10 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->lGoldenSection = (gcnew System::Windows::Forms::Label());
 			this->lDerivativeResult = (gcnew System::Windows::Forms::Label());
 			this->lGoldenResult = (gcnew System::Windows::Forms::Label());
+			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
+			this->groupBox2->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// tFunction
@@ -670,7 +674,7 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			// rbMin
 			// 
 			this->rbMin->AutoSize = true;
-			this->rbMin->Location = System::Drawing::Point(641, 16);
+			this->rbMin->Location = System::Drawing::Point(119, 9);
 			this->rbMin->Name = L"rbMin";
 			this->rbMin->Size = System::Drawing::Size(75, 22);
 			this->rbMin->TabIndex = 43;
@@ -703,7 +707,7 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->rbMax->AutoSize = true;
 			this->rbMax->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"rbMax.BackgroundImage")));
 			this->rbMax->Checked = true;
-			this->rbMax->Location = System::Drawing::Point(491, 16);
+			this->rbMax->Location = System::Drawing::Point(6, 9);
 			this->rbMax->Name = L"rbMax";
 			this->rbMax->Size = System::Drawing::Size(87, 22);
 			this->rbMax->TabIndex = 42;
@@ -738,6 +742,17 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->lGoldenResult->Size = System::Drawing::Size(0, 18);
 			this->lGoldenResult->TabIndex = 45;
 			// 
+			// groupBox2
+			// 
+			this->groupBox2->Controls->Add(this->rbMin);
+			this->groupBox2->Controls->Add(this->rbMax);
+			this->groupBox2->Location = System::Drawing::Point(496, 13);
+			this->groupBox2->Name = L"groupBox2";
+			this->groupBox2->Size = System::Drawing::Size(200, 38);
+			this->groupBox2->TabIndex = 47;
+			this->groupBox2->TabStop = false;
+			this->groupBox2->Enter += gcnew System::EventHandler(this, &MyForm::groupBox2_Enter);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 18);
@@ -746,15 +761,14 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(762, 282);
+			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->lGoldenResult);
 			this->Controls->Add(this->lDerivativeResult);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->lDerivative);
 			this->Controls->Add(this->lGoldenSection);
-			this->Controls->Add(this->rbMin);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->bResult);
-			this->Controls->Add(this->rbMax);
 			this->Controls->Add(this->lRightBorder);
 			this->Controls->Add(this->lLeftBorder);
 			this->Controls->Add(this->tRightBorder);
@@ -773,6 +787,8 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 			this->Text = L"Пошук максимуму та мінімуму функцій";
 			this->panel1->ResumeLayout(false);
 			this->panel2->ResumeLayout(false);
+			this->groupBox2->ResumeLayout(false);
+			this->groupBox2->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -1045,15 +1061,17 @@ private: System::Windows::Forms::Label^  lGoldenResult;
 
 	private: System::Void rbMax_CheckedChanged(System::Object^  sender, System::EventArgs^  e) 
 	{
-		rbMin->Checked = false;
+	//	rbMin->Checked = false;
 		
 	}
 	private: System::Void rbMin_CheckedChanged(System::Object^  sender, System::EventArgs^  e) 
 	{
-		rbMax->Checked = false;
+//		rbMax->Checked = false;
 		
 	}
 
+private: System::Void groupBox2_Enter(System::Object^  sender, System::EventArgs^  e) {
+}
 };
 
 };
